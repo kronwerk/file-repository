@@ -9,10 +9,6 @@ div.personalPage {
   height: 100%;
   background-color: #00ccff;
 }
-div.personalPage {
-  background-color: #00ccff;
-  margin: 0 10%;
-}
 div.personalPage h5 {
   font-weight: "normal";
   border: 0;
