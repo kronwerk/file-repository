@@ -1,0 +1,105 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="style_personal_page.css" media="all" />
+	<script>
+		function fn_select_option(el)   {
+			var sel = el.options[el.selectedIndex].innerHTML;
+			var objTablVis = document.getElementById("filebasetable");
+			var objTablScale = document.getElementById("mainTable");
+			objTablVis.style.display='';
+			objTablScale.style.height='';
+			if(sel == "choose repository") {
+				objTablVis.style.display='none';
+				objTablScale.style.height='40%';
+			}
+		}
+		function fn_loadView(el)   {
+			var objTabl = document.getElementById("filebasetable");
+			objTabl.style.display='none';
+			objTabl = document.getElementById("mainTable");
+			objTabl.style.height='40%';
+		}
+	</script>
+</head>
+<body onload="fn_loadView(this);">
+	<table id="mainTable">
+		<tr id="filebasetable"><td colspan="2">
+			<table>
+				<tr class="header">
+					<td rowspan="2"><h5>Files</h5></td>
+					<td colspan="2"><h6>N files in repository's name</h6></td>
+					<td rowspan="2">
+						<button>move all</button>
+						<button>delete all</button>
+						<button>add new</button>
+					</td>
+				</tr>
+				<tr class="header"><td colspan="2"><h6>M members</h6></td></tr>
+				<tr><td colspan="4"><div class="databaseDiv">
+					<table class = "databaseTable">
+						<colgroup>
+							<col class="databaseIcon">
+							<col>
+							<col>
+							<col class="databaseIcon">
+							<col class="databaseIcon">
+						</colgroup>
+						<tr>
+							<td><img src="img/look_icon.png"></td>
+							<td>name</td>
+							<td>info</td>
+							<td><img src="img/delete_icon.png"></td>
+							<td><img src="img/move_icon.png"></td>
+						</tr>
+					</table>
+				</div></td></tr>
+			</table>
+		</td></tr>
+		<tr class="base"><td class="base">
+			<table>
+				<tr class="header"><td><h5>You</h5></td><td><img src="img/exit_icon.png"></td></tr>						<tr><td>
+					<table>
+						<tr>
+							<td>name</td>
+							<td>Darina</td>
+						</tr>
+						<tr>
+							<td>city</td>
+							<td>SPb</td>
+						</tr>
+						<tr>
+							<td>age</td>
+							<td>22</td>
+						</tr>
+						<tr>
+							<td>gender</td>
+							<td>female</td>
+						</tr>
+					</table>
+				</td><td><img src="img/edit_icon.png"></td></tr>
+			</table>
+		</td>
+		<td>
+			<table>
+				<tr class="header">
+					<td><h5>Repositories</h5></td>
+					<td><img src="img/search_icon.png"></td>
+				</tr>
+				<tr><td>
+					<select name="rep" onchange="fn_select_option(this);">
+						<option>choose repository</option>
+						<option>project 1</option>
+						<option>project 2</option>
+					</select>
+				</td>
+				<td>
+					<button>create</button>
+					<button>delete</button>
+					<button>invite</button>
+				</td></tr>
+				
+			</table>
+		</td></tr>
+	</table>
+</body>
+</html>
