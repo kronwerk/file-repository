@@ -156,12 +156,6 @@ h1::first-letter, h5::first-letter, h6::first-letter{
         display: block;
     }
 
-    .container {
-        width: @container-width-large;
-        display: table;
-        margin: 0 auto;
-        background-color: lighten(@main-color,3%);
-    }
 
     .row {
         width: 100% - @margin-large;
@@ -194,18 +188,7 @@ h1::first-letter, h5::first-letter, h6::first-letter{
         width: 100% / 3 * 2 - 2*@margin-large - 2*@margin-large;
     }
 
-    .col-4 {
-        width: 100% / 4 - 2*@margin-large - 2*@margin-large;
-    }
-
-    .col-3-4 {
-        width: 100% / 4 * 3 - 2*@margin-large - 2*@margin-large;
-    }
-
     @media all and (max-width:@threshold-1) {
-        .container {
-            width: @container-width-medium;
-        }
 
         .row {
             width: 100% - @margin-small;
@@ -232,26 +215,9 @@ h1::first-letter, h5::first-letter, h6::first-letter{
         .col-2-3 {
             width: 100% / 3*2 - 2*@margin-small - 2*@margin-small;
         }
-
-        .col-4 {
-            width: 100% / 4 - 2*@margin-small - 2*@margin-small;
-        }
-
-        .col-3-4 {
-            width: 100% / 4*3 - 2*@margin-small - 2*@margin-small;
-        }
     }
 
-    @media all and (max-width:@threshold-2) {
-        .col-4 {
-            width: 100% / 2 - 2*@margin-small - 2*@margin-small;
-            ;
-        }
 
-        .col-3-4 {
-            width: 100% / 2 - 2*@margin-small - 2*@margin-small;
-        }
-    }
 
     @media all and (max-width:@threshold-3) {
         .col-3 {
@@ -291,14 +257,6 @@ h1::first-letter, h5::first-letter, h6::first-letter{
         }
 
         .col-2-3 {
-            width: 100% - 2*@margin-small - 2*@margin-small;
-        }
-
-        .col-4 {
-            width: 100% - 2*@margin-small - 2*@margin-small;
-        }
-
-        .col-3-4 {
             width: 100% - 2*@margin-small - 2*@margin-small;
         }
     }
@@ -358,41 +316,35 @@ h1::first-letter, h5::first-letter, h6::first-letter{
 
      .tabs {
 	    background: @button-color;
-	    margin: 0 0 30px;
     }
     .tabs__caption {
-	    height: 28px;
-	    line-height: 25px;
+        -webkit-padding-start: 0px;
+        margin-left:12%;
+        margin-right:12%;
 	    list-style: none;
-	    border-bottom: 1px solid #DDD;
-	    background: #FFF;
+	    background: @back-color;
     }
     .tabs__caption li {
-	    float: left;
-	    display: inline;
-	    margin: 0 1px -1px 0;
-	    padding: 0 13px 1px;
-	    color: @button-color;
-	    cursor: pointer;
-	    background: #F9F9F9;
-	    border: 1px solid #E4E4E4;
-	    border-bottom: 1px solid #F9F9F9;
-	    position: relative;
+        display:inline;
+   border-radius: 6px;  /* свойство для тех кто его поддерживает */
+            -moz-border-radius: 6px;  /* для firefox */
+            -webkit-border-radius: 6px;
+                box-shadow: 0 0 5px rgba(0,0,0,0.4);
+                background-color: @button-color;
+                color: @font-color;
+                text-decoration: none;
+        margin: 2*@margin-large @margin-large;
+        font-weight:bold;
+
     }
     .tabs__caption li:hover,
     .tabs__caption .active {
-	    color: #444;
-	    background: @button-color;
-	    padding: 0 13px 2px;
-	    border: 1px solid #D4D4D4;
-	    border-bottom: 1px solid #EFEFEF;
+	 
+                background-color: @button-hover-color;
     }
     .tabs__content {
 	    display: none;
-	    border: @margin-large solid #D4D4D4;
-	    border-width: ;
 	    background: @button-color;
-	    padding: 0 12px;
     }
     .tabs__content.active {
 	    display: block;
@@ -411,11 +363,8 @@ h1::first-letter, h5::first-letter, h6::first-letter{
             }
 
             input, select {
-                border-radius: 5px;  /* свойство для тех кто его поддерживает */
-                -moz-border-radius: 5px;  /* для firefox */
-                -webkit-border-radius: 5px;
+        
                 border: none;
-                padding-left: @margin-large / 3;
                 font-family: @font-family;
                 font-size: @font-size;
                 width: 100% - 2*@margin-small;
@@ -430,6 +379,11 @@ h1::first-letter, h5::first-letter, h6::first-letter{
         display: inline-block;
 
         input[type="submit"] {
+                    border-radius: 5px;  /* свойство для тех кто его поддерживает */
+                -moz-border-radius: 5px;  /* для firefox */
+                -webkit-border-radius: 5px;
+         margin-left:auto;
+         margin-right:auto;
             margin-top: 4*@margin-large;
             border:0;
             height: 35px;
