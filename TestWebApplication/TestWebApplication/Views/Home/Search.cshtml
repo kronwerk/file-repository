@@ -1,16 +1,61 @@
 ﻿<div class="search">
-    <p> Здесь находится страница поиска
-    <p>
-        @Html.ActionLink("главная","Index")
-    <p>
-        @Html.ActionLink("личная страница","PersonalPage")
-    <p>
-        @Html.ActionLink("просмотр файла","FilePage")
 
-<!-- 
-    Или, если вы хотите использовать картинки, кнопки и прочее в качестве ссылки, то используйте следующую конструкцию.
-    <a href='@Url.Action("Index")'>
-        <img src="~/Content/img/exit_icon.png" />
-    </a>
--->
-</div>
+
+        <div class="row">
+            <div class="col col-1">
+                <h1>Search in file repository</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col col-4">
+                <ul class="menu left-menu">
+                    <li>
+                        @Html.ActionLink("Personal Page", "PersonalPage")
+                    </li>
+                    <li>
+                        @Html.ActionLink("Log Out", "Index")
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col col-3-4">
+                <form class="form-control">
+                    <div class="form-field">
+                        <label for="login">Search</label>
+                        <input type="text" name="search" id="search" />
+
+                    </div>
+                    <div class="col col-3-4">
+                        <input type="checkbox" class="checkbox" id="checkbox" />
+                        <label for="checkbox">Искать только в моих репозиториях</label>
+                    </div>
+                    <div class="col col-1">
+                        <input type="checkbox" class="checkbox" id="checkbox" />
+                        <label for="checkbox">Искать только изображения</label>
+                    </div>
+                    <div class="col col-1">
+                        <input type="checkbox" class="checkbox" id="checkbox" />
+                        <label for="checkbox">Искать только видеофайлы</label>
+                    </div>
+                    <div class="col col-1">
+                        <input type="checkbox" class="checkbox" id="checkbox" />
+                        <label for="checkbox">Искать только аудиофайлы</label>
+                    </div>
+                    <div class="col col-1">
+                        <input type="checkbox" class="checkbox" id="checkbox" />
+                        <label for="checkbox">Искать только проекты</label>
+                    </div>
+                    <div class="row">
+                        <div class="col col-2">
+                            <input type="submit" value="Search" />
+                            <div class="col col-1">
+                                <iframe name="result"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
