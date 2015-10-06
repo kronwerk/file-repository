@@ -118,7 +118,10 @@ h1::first-letter, h5::first-letter, h6::first-letter{
         max-width:50px;
     }
 }
-.index{
+
+
+/*====================================================================*/
+/*COLS*/
     @margin-large: 0.4%;
     @margin-small: 0.3%;
     @margin-list: 2%;
@@ -128,35 +131,8 @@ h1::first-letter, h5::first-letter, h6::first-letter{
 
     @threshold-1: 1000px;
     @threshold-2: 850px;
-    @threshold-3: 650px;
     @threshold-4: 500px;
     
-    width: 100%;
-    margin: 0;
-    float: left;
-    height: 100%;
-
-    h1 {
-        font-size: 2*@font-size;
-        text-align: center;
-        margin: @margin-large auto;
-    }
-
-    h2 {
-        font-size: 1.3*@font-size;
-        text-align: center;
-        margin: @margin-large / 2 auto;
-        color: @header-color;
-    }
-
-    img {
-        max-height: 200px;
-        max-width: 100%;
-        margin: @margin-large / 2 auto;
-        display: block;
-    }
-
-
     .row {
         width: 100% - @margin-large;
         margin: 0;
@@ -176,16 +152,19 @@ h1::first-letter, h5::first-letter, h6::first-letter{
         width: 100% - 2*@margin-large - 2*@margin-large;
     }
 
-    .col-2 {
-        width: 100% / 2 - 2*@margin-large - 2*@margin-large;
-    }
-
+    
     .col-3 {
         width: 100% / 3 - 2*@margin-large - 2*@margin-large;
     }
-
     .col-2-3 {
         width: 100% / 3 * 2 - 2*@margin-large - 2*@margin-large;
+    }
+   .col-4 {
+        width: 100% / 4 - 2*@margin-large - 2*@margin-large;
+    }
+
+    .col-3-4 {
+        width: 100% / 4 * 3 - 2*@margin-large - 2*@margin-large;
     }
 
     @media all and (max-width:@threshold-1) {
@@ -200,34 +179,28 @@ h1::first-letter, h5::first-letter, h6::first-letter{
             padding: @margin-small;
         }
 
-        .col-1 {
-            width: 100% - 2*@margin-small - 2*@margin-small;
-        }
+     
 
-        .col-2 {
-            width: 100% / 2 - 2*@margin-small - 2*@margin-small;
-        }
-
-        .col-3 {
+         .col-3 {
             width: 100% / 3 - 2*@margin-small - 2*@margin-small;
         }
 
         .col-2-3 {
             width: 100% / 3*2 - 2*@margin-small - 2*@margin-small;
         }
+        .col-3-4 {
+            width: 100% / 4*3 - 2*@margin-small - 2*@margin-small;
+        }
     }
 
-
-
-    @media all and (max-width:@threshold-3) {
-        .col-3 {
-            width: 100% / 2 - 2*@margin-small - 2*@margin-small;
-        }
-
-        .col-2-3 {
+    @media all and (max-width:@threshold-2) {
+        .col-3-4 {
             width: 100% / 2 - 2*@margin-small - 2*@margin-small;
         }
     }
+   
+
+
 
     @media all and (max-width:@threshold-4) {
         .row {
@@ -235,9 +208,6 @@ h1::first-letter, h5::first-letter, h6::first-letter{
             padding: @margin-small;
         }
 
-        .container {
-            width: 100%;
-        }
 
         .col {
             margin: @margin-small;
@@ -247,11 +217,8 @@ h1::first-letter, h5::first-letter, h6::first-letter{
         .col-1 {
             width: 100% - 2*@margin-small - 2*@margin-small;
         }
-
-        .col-2 {
-            width: 100% - 2*@margin-small - 2*@margin-small;
-        }
-
+        
+        
         .col-3 {
             width: 100% - 2*@margin-small - 2*@margin-small;
         }
@@ -259,7 +226,35 @@ h1::first-letter, h5::first-letter, h6::first-letter{
         .col-2-3 {
             width: 100% - 2*@margin-small - 2*@margin-small;
         }
+
+        .col-3-4 {
+            width: 100% - 2*@margin-small - 2*@margin-small;
+        }
     }
+
+
+
+    /*========================================================*/
+.index{
+
+    width: 100%;
+    margin: 0;
+    float: left;
+    height: 100%;
+
+    h1 {
+        font-size: 2*@font-size;
+        text-align: center;
+        margin: @margin-large auto;
+    }
+
+    h2 {
+        font-size: 1.3*@font-size;
+        text-align: center;
+        margin: @margin-large / 2 auto;
+        color: @header-color;
+    }
+
 
     ul.menu {
 
@@ -405,18 +400,7 @@ h1::first-letter, h5::first-letter, h6::first-letter{
 
 /*=====================================================================================*/
 .search{
-    @margin-large: 0.4%;
-    @margin-small: 0.3%;
-    @margin-list: 2%;
-    @container-width-large: 70%;
-    @container-width-medium: 95%;
-    @container-width-small: 95%;
 
-    @threshold-1: 1000px;
-    @threshold-2: 850px;
-    @threshold-3: 650px;
-    @threshold-4: 500px;
-    
     width: 100%;
     margin: 0;
     float: left;
@@ -428,125 +412,7 @@ h1::first-letter, h5::first-letter, h6::first-letter{
         margin: @margin-large auto;
     }
 
-    /*h2 {
-        font-size: 1.3*@font-size;
-        text-align: center;
-        margin: @margin-large / 2 auto;
-        color: @header-color;
-    }
-
-    img {
-        max-height: 200px;
-        max-width: 100%;
-        margin: @margin-large / 2 auto;
-        display: block;
-    }*/
-
-    /*.container {
-        width: @container-width-large;
-        display: table;
-        margin: 0 auto;*/
-
-    /*}*/
-
-    .row {
-        width: 100% - @margin-large;
-        margin: 0;
-        display: block;
-        float: left;
-        padding: @margin-large / 2;
-    }
-
-    .col {
-        float: left;
-        margin: @margin-large;
-        text-align: justify;
-        padding: @margin-large;
-    }
-
-    .col-1 {
-        width: 100% - 2*@margin-large - 2*@margin-large;
-    }
-
-
-    .col-4 {
-        width: 100% / 4 - 2*@margin-large - 2*@margin-large;
-    }
-
-    .col-3-4 {
-        width: 100% / 4 * 3 - 2*@margin-large - 2*@margin-large;
-    }
-
-    @media all and (max-width:@threshold-1) {
-        .container {
-            width: @container-width-medium;
-        }
-
-        .row {
-            width: 100% - @margin-small;
-            padding: @margin-small;
-        }
-
-        .col {
-            margin: @margin-small;
-            padding: @margin-small;
-        }
-
-        .col-1 {
-            width: 100% - 2*@margin-small - 2*@margin-small;
-        }
-
-        .col-4 {
-            width: 100% / 4 - 2*@margin-small - 2*@margin-small;
-        }
-
-        .col-3-4 {
-            width: 100% / 4*3 - 2*@margin-small - 2*@margin-small;
-        }
-    }
-
-    @media all and (max-width:@threshold-2) {
-        .col-4 {
-            width: 100% / 2 - 2*@margin-small - 2*@margin-small;
-            ;
-        }
-
-        .col-3-4 {
-            width: 100% / 2 - 2*@margin-small - 2*@margin-small;
-        }
-    }
-
-
-
-    @media all and (max-width:@threshold-4) {
-        .row {
-            width: 100% - 2*@margin-small;
-            padding: @margin-small;
-        }
-
-        .container {
-            width: 100%;
-        }
-
-        .col {
-            margin: @margin-small;
-            padding: @margin-small;
-        }
-
-        .col-1 {
-            width: 100% - 2*@margin-small - 2*@margin-small;
-        }
-
-
-
-        .col-4 {
-            width: 100% - 2*@margin-small - 2*@margin-small;
-        }
-
-        .col-3-4 {
-            width: 100% - 2*@margin-small - 2*@margin-small;
-        }
-    }
+  
 
     ul.menu {
         list-style-type: none;
