@@ -2,65 +2,71 @@
   height: 100%;
 }
 body {
+  font-size: 14px;
+  font-family: "Segoe UI";
   height: 100%;
   margin: 0 10%;
+  background-color: #e1e1e1;
 }
-div.personalPage {
+h1::first-letter,
+h5::first-letter,
+h6::first-letter {
+  font-family: "ALGERIAN";
+  font-size: 150%;
+}
+.personalPage {
   height: 100%;
-  background-color: #00ccff;
 }
-div.personalPage h5 {
+.personalPage h5 {
   font-weight: "normal";
   border: 0;
   margin: 0;
   padding: 0;
   font-size: 200%;
 }
-div.personalPage h5::first-letter {
-  font-family: "ALGERIAN";
-  font-size: 150%;
-}
-div.personalPage h6 {
+.personalPage h6 {
   font-weight: "normal";
   border: 0;
   margin: 0;
   padding: 0;
   font-size: 120%;
 }
-div.personalPage h6::first-letter {
-  font-family: "ALGERIAN";
-  font-size: 120%;
-}
-div.personalPage table {
+.personalPage table {
   width: 100%;
   height: 100%;
 }
-div.personalPage tr.header {
+.personalPage tr.header {
   height: 20%;
 }
-div.personalPage tr.base {
+.personalPage tr.base {
   height: 40%;
 }
-div.personalPage td {
+.personalPage td {
   valign: "top";
 }
-div.personalPage table.databaseTable {
+.personalPage table.databaseTable {
   height: auto;
 }
-div.personalPage table.databaseTable tr {
+.personalPage table.databaseTable tr {
   height: 30px;
   border: 1px solid black;
 }
-div.personalPage table.databaseTable tr td {
+.personalPage table.databaseTable tr td {
   height: 30px;
 }
-div.personalPage col.databaseIcon {
+.personalPage col.databaseIcon {
   width: 30px;
 }
-div.personalPage table.indexTable {
+.personalPage #filebasetable {
+  display: none;
+}
+.personalPage #mainTable {
   height: 40%;
 }
-div.personalPage div.databaseDiv {
+.personalPage table.indexTable {
+  height: 40%;
+}
+.personalPage div.databaseDiv {
   background-color: white;
   overflow-y: auto;
   width: 100%;
@@ -68,32 +74,33 @@ div.personalPage div.databaseDiv {
   height: 100%;
   min-height: 30px;
 }
-div.personalPage button {
+.personalPage button {
   margin: 5% 0 5% 25%;
   display: block;
   width: 50%;
   min-width: 60px;
   height: 20%;
   min-height: 40px;
-  background-color: #00ccff;
-  border: 5px groove #080808;
+  border: 4px groove #080808;
   border-radius: 7px;
   font-weight: bold;
 }
-div.personalPage select {
+.personalPage button.on {
+  background-color: #d5d5d5;
+}
+.personalPage button.off {
+  background-color: #e1e1e1;
+}
+.personalPage select {
   width: 100%;
   font-size: 120%;
   margin: 5% 0 0 0;
 }
-div.personalPage img {
+.personalPage img {
   width: 80%;
   max-width: 50px;
 }
-.index html {
-  font-size: 14px;
-  font-family: "Segoe UI";
-}
-.index body {
+.index {
   width: 100%;
   margin: 0;
   float: left;
@@ -267,8 +274,11 @@ div.personalPage img {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 .index .top-menu li {
-  width: 32.53333333%;
+  width: 31.53333333%;
   margin: 0.8% 0.4%;
+  border: 4px groove #080808;
+  border-radius: 7px;
+  font-weight: bold;
 }
 .index .top-menu li a {
   display: block;
@@ -361,34 +371,28 @@ div.personalPage img {
 }
 /*=====================================================================================*/
 .search {
-  /*h2 {
-    font-size: 1.3*@font-size;
-    text-align: center;
-    margin: @margin-large / 2 auto;
-    color: @header-color;
-}
-
-img {
-    max-height: 200px;
-    max-width: 100%;
-    margin: @margin-large / 2 auto;
-    display: block;
-}*/
-  /*.container {
-    width: @container-width-large;
-    display: table;
-    margin: 0 auto;*/
-  /*}*/
-}
-.search html {
-  font-size: 14px;
-  font-family: "Segoe UI";
-}
-.search body {
   width: 100%;
   margin: 0;
   float: left;
   height: 100%;
+  /*h2 {
+        font-size: 1.3*@font-size;
+        text-align: center;
+        margin: @margin-large / 2 auto;
+        color: @header-color;
+    }
+
+    img {
+        max-height: 200px;
+        max-width: 100%;
+        margin: @margin-large / 2 auto;
+        display: block;
+    }*/
+  /*.container {
+        width: @container-width-large;
+        display: table;
+        margin: 0 auto;*/
+  /*}*/
 }
 .search h1 {
   font-size: 28px;
@@ -488,13 +492,13 @@ img {
 }
 .search ul.menu li a {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
-  background-color: #828282;
-  color: #000000;
+  background-color: #e1e1e1;
+  color: #2f2f2f;
   text-decoration: none;
   padding: 2% 0;
 }
 .search ul.menu li a:hover {
-  background-color: #767676;
+  background-color: #d5d5d5;
 }
 .search ul.menu li a:active {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
@@ -509,6 +513,9 @@ img {
 .search .left-menu li {
   width: 100%;
   margin: 2% 0;
+  border: 4px groove #080808;
+  border-radius: 7px;
+  font-weight: bold;
 }
 .search .left-menu li a {
   display: inline-block;
@@ -550,11 +557,14 @@ img {
   border: 0;
   height: 35px;
   width: 120px;
-  background-color: #828282;
+  background-color: #e1e1e1;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+  border: 4px groove #080808;
+  border-radius: 7px;
+  font-weight: bold;
 }
 .search .form-control input[type="submit"]:hover {
-  background-color: #767676;
+  background-color: #d5d5d5;
 }
 .search .form-control input[type="submit"]:active {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);

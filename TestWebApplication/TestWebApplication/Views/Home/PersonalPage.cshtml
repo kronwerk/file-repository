@@ -5,16 +5,10 @@
 			var objTablScale = document.getElementById("mainTable");
 			objTablVis.style.display='';
 			objTablScale.style.height='';
-			if(sel == "choose repository") {
-				objTablVis.style.display='none';
-				objTablScale.style.height='40%';
+			if (sel != "choose repository") {
+			    objTablVis.style.display = 'table-row';
+			    objTablScale.style.height = '100%';
 			}
-		}
-		function fn_loadView(el) {
-			var objTabl = document.getElementById("filebasetable");
-			objTabl.style.display='none';
-			objTabl = document.getElementById("mainTable");
-			objTabl.style.height='40%';
 		}
 </script>
 <div class="personalPage">
@@ -26,9 +20,9 @@
                     <td rowspan="2"><h5>Files</h5></td>
                     <td colspan="2"><h6>N files in repository's name</h6></td>
                     <td rowspan="2">
-                        <button>move all</button>
-                        <button>delete all</button>
-                        <button>add new</button>
+                        <button onmouseover="this.className='on';" onmouseout="this.className='off';">move all</button>
+                        <button onmouseover="this.className='on';" onmouseout="this.className='off';">delete all</button>
+                        <button onmouseover="this.className='on';" onmouseout="this.className='off';">add new</button>
                     </td>
                 </tr>
                 <tr class="header"><td colspan="2"><h6>M members</h6></td></tr>
@@ -266,9 +260,9 @@
                         </select>
                     </td>
                     <td>
-                        <button>create</button>
-                        <button>delete</button>
-                        <button>invite</button>
+                        <button onmouseover="this.className='on';" onmouseout="this.className='off';">create</button>
+                        <button onmouseover="this.className='on';" onmouseout="this.className='off';">delete</button>
+                        <button onmouseover="this.className='on';" onmouseout="this.className='off';">invite</button>
                     </td>
                 </tr>
 
