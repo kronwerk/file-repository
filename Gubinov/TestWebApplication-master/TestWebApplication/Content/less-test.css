@@ -1,0 +1,239 @@
+﻿html {
+  font-size: 14px;
+  font-family: "Segoe UI";
+}
+body {
+  width: 100%;
+  margin: 0;
+  float: left;
+  height: 100%;
+}
+h1 {
+  font-size: 28px;
+  text-align: center;
+  margin: 0.4% auto;
+}
+h2 {
+  font-size: 18.2px;
+  text-align: center;
+  margin: 0.2% auto;
+  color: #000000;
+}
+img {
+  max-height: 200px;
+  max-width: 100%;
+  margin: 0.2% auto;
+  display: block;
+}
+.container {
+  width: 70%;
+  display: table;
+  margin: 0 auto;
+  background-color: #d9e9ff;
+}
+.row {
+  width: 99.6%;
+  margin: 0;
+  display: block;
+  float: left;
+  padding: 0.2%;
+}
+.col {
+  float: left;
+  margin: 0.4%;
+  text-align: justify;
+  padding: 0.4%;
+}
+.col-1 {
+  width: 98.4%;
+}
+/*.col-2 {
+    width: 100% / 2 - 2*@margin-large - 2*@margin-large;
+}
+
+.col-3 {
+    width: 100% / 3 - 2*@margin-large - 2*@margin-large;
+}
+
+.col-2-3 {
+    width: 100% / 3 * 2 - 2*@margin-large - 2*@margin-large;
+}*/
+.col-4 {
+  width: 23.4%;
+}
+.col-3-4 {
+  width: 73.4%;
+}
+@media all and (max-width: 1000px) {
+  .container {
+    width: 95%;
+  }
+  .row {
+    width: 99.7%;
+    padding: 0.3%;
+  }
+  .col {
+    margin: 0.3%;
+    padding: 0.3%;
+  }
+  .col-1 {
+    width: 98.8%;
+  }
+  /*.col-2 {
+        width: 100% / 2 - 2*@margin-small - 2*@margin-small;
+    }
+
+    .col-3 {
+        width: 100% / 3 - 2*@margin-small - 2*@margin-small;
+    }
+
+    .col-2-3 {
+        width: 100% / 3*2 - 2*@margin-small - 2*@margin-small;
+    }*/
+  .col-4 {
+    width: 23.8%;
+  }
+  .col-3-4 {
+    width: 73.8%;
+  }
+}
+@media all and (max-width: 850px) {
+  .col-4 {
+    width: 48.8%;
+  }
+  .col-3-4 {
+    width: 48.8%;
+  }
+}
+/*@media all and (max-width:@threshold-3) {
+    .col-3 {
+        width: 100% / 2 - 2*@margin-small - 2*@margin-small;
+    }
+
+    .col-2-3 {
+        width: 100% / 2 - 2*@margin-small - 2*@margin-small;
+    }
+}*/
+@media all and (max-width: 500px) {
+  .row {
+    width: 99.4%;
+    padding: 0.3%;
+  }
+  .container {
+    width: 100%;
+  }
+  .col {
+    margin: 0.3%;
+    padding: 0.3%;
+  }
+  .col-1 {
+    width: 98.8%;
+  }
+  /*.col-2 {
+        width: 100% - 2*@margin-small - 2*@margin-small;
+    }
+
+    .col-3 {
+        width: 100% - 2*@margin-small - 2*@margin-small;
+    }
+
+    .col-2-3 {
+        width: 100% - 2*@margin-small - 2*@margin-small;
+    }*/
+  .col-4 {
+    width: 98.8%;
+  }
+  .col-3-4 {
+    width: 98.8%;
+  }
+}
+ul.menu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+ul.menu li {
+  text-align: center;
+  padding: 0;
+  display: inline-block;
+  float: left;
+}
+@media only screen and (max-width: 500px) {
+  ul.menu li {
+    display: block;
+    width: 100%;
+  }
+}
+ul.menu li a {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  background-color: #0065f3;
+  color: #000000;
+  text-decoration: none;
+  padding: 2% 0;
+}
+ul.menu li a:hover {
+  background-color: #005bd9;
+}
+ul.menu li a:active {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+.top-menu li {
+  width: 24.2%;
+  margin: 0.8% 0.4%;
+}
+.top-menu li a {
+  display: block;
+}
+.left-menu li {
+  width: 100%;
+  margin: 2% 0;
+}
+.left-menu li a {
+  display: inline-block;
+  width: 100%;
+}
+@media only screen and (max-width: 500px) {
+  .left-menu li {
+    margin: 0.8% 0.4%;
+  }
+}
+.form-control {
+  width: 100%;
+  margin: 0.4% 0;
+  display: inline-block;
+}
+.form-control .form-field {
+  width: 100%;
+  margin: 0.8% 0;
+}
+.form-control .form-field label {
+  width: 155px;
+  display: inline-block;
+  vertical-align: top;
+  line-height: 25px;
+}
+.form-control .form-field input,
+.form-control .form-field select {
+  border: none;
+  padding-left: 0.13333333%;
+  font-family: "Segoe UI";
+  font-size: 14px;
+  width: 300px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+  height: 25px;
+  line-height: 20px;
+}
+.form-control input[type="submit"] {
+  margin-top: 1.6%;
+  border: 0;
+  height: 35px;
+  width: 120px;
+  background-color: #0065f3;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+}
+.form-control input[type="submit"]:hover {
+  background-color: #005bd9;
+}
+.form-control input[type="submit"]:active {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
