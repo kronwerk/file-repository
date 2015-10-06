@@ -1,4 +1,23 @@
-﻿<div class="personalPage">
+﻿<script type="text/javascript">
+		function fn_select_option(el)   {
+			var sel = el.options[el.selectedIndex].innerHTML;
+			var objTablVis = document.getElementById("filebasetable");
+			var objTablScale = document.getElementById("mainTable");
+			objTablVis.style.display='';
+			objTablScale.style.height='';
+			if(sel == "choose repository") {
+				objTablVis.style.display='none';
+				objTablScale.style.height='40%';
+			}
+		}
+		function fn_loadView(el) {
+			var objTabl = document.getElementById("filebasetable");
+			objTabl.style.display='none';
+			objTabl = document.getElementById("mainTable");
+			objTabl.style.height='40%';
+		}
+</script>
+<div class="personalPage">
 <table id="mainTable">
     <tr id="filebasetable">
         <td colspan="2">
