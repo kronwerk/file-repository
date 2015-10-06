@@ -6,7 +6,7 @@ body {
   font-family: "Segoe UI";
   height: 100%;
   margin: 0 10%;
-  background-color: #e1e1e1;
+  background-color: #fcfcfc;
 }
 h1::first-letter,
 h5::first-letter,
@@ -15,6 +15,7 @@ h6::first-letter {
   font-size: 150%;
 }
 .personalPage {
+  background-color: #f8f8ff;
   height: 100%;
 }
 .personalPage h5 {
@@ -86,10 +87,10 @@ h6::first-letter {
   font-weight: bold;
 }
 .personalPage button.on {
-  background-color: #d5d5d5;
+  background-color: #e6e6e6;
 }
 .personalPage button.off {
-  background-color: #e1e1e1;
+  background-color: #f2f2f2;
 }
 .personalPage select {
   width: 100%;
@@ -131,9 +132,6 @@ h6::first-letter {
   width: 73.4%;
 }
 @media all and (max-width: 1000px) {
-  .container {
-    width: 95%;
-  }
   .row {
     width: 99.7%;
     padding: 0.3%;
@@ -181,6 +179,7 @@ h6::first-letter {
 }
 /*========================================================*/
 .index {
+  background-color: #f8f8ff;
   width: 100%;
   margin: 0;
   float: left;
@@ -195,7 +194,7 @@ h6::first-letter {
   font-size: 18.2px;
   text-align: center;
   margin: 0.2% auto;
-  color: #555555;
+  color: #666666;
 }
 .index ul.menu {
   list-style-type: none;
@@ -208,7 +207,7 @@ h6::first-letter {
   display: inline-block;
   float: left;
 }
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 1000px) {
   .index ul.menu li {
     display: block;
     width: 100%;
@@ -221,13 +220,13 @@ h6::first-letter {
   /* для firefox */
   -webkit-border-radius: 6px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
-  background-color: #e1e1e1;
-  color: #2f2f2f;
+  background-color: #f2f2f2;
+  color: #404040;
   text-decoration: none;
   padding: 2% 0;
 }
 .index ul.menu li a:hover {
-  background-color: #d5d5d5;
+  background-color: #e6e6e6;
 }
 .index ul.menu li a:active {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
@@ -243,14 +242,13 @@ h6::first-letter {
   display: block;
 }
 .index .tabs {
-  background: #e1e1e1;
+  background: #f8f8ff;
 }
 .index .tabs__caption {
   -webkit-padding-start: 0px;
   margin-left: 12%;
   margin-right: 12%;
   list-style: none;
-  background: #e1e1e1;
 }
 .index .tabs__caption li {
   display: inline;
@@ -260,19 +258,17 @@ h6::first-letter {
   /* для firefox */
   -webkit-border-radius: 6px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
-  background-color: #e1e1e1;
-  color: #2f2f2f;
+  color: #404040;
   text-decoration: none;
   margin: 0.8% 0.4%;
   font-weight: bold;
 }
 .index .tabs__caption li:hover,
 .index .tabs__caption .active {
-  background-color: #d5d5d5;
+  background-color: #e6e6e6;
 }
 .index .tabs__content {
   display: none;
-  background: #e1e1e1;
 }
 .index .tabs__content.active {
   display: block;
@@ -314,17 +310,18 @@ h6::first-letter {
   border: 0;
   height: 35px;
   width: 120px;
-  background-color: #e1e1e1;
+  background-color: #f2f2f2;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
 }
 .index .form-control input[type="submit"]:hover {
-  background-color: #d5d5d5;
+  background-color: #e6e6e6;
 }
 .index .form-control input[type="submit"]:active {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 /*=====================================================================================*/
 .search {
+  background-color: #f8f8ff;
   width: 100%;
   margin: 0;
   float: left;
@@ -354,13 +351,13 @@ h6::first-letter {
 }
 .search ul.menu li a {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
-  background-color: #e1e1e1;
-  color: #2f2f2f;
+  background-color: #f2f2f2;
+  color: #404040;
   text-decoration: none;
   padding: 2% 0;
 }
 .search ul.menu li a:hover {
-  background-color: #d5d5d5;
+  background-color: #e6e6e6;
 }
 .search ul.menu li a:active {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
@@ -419,14 +416,14 @@ h6::first-letter {
   border: 0;
   height: 35px;
   width: 120px;
-  background-color: #e1e1e1;
+  background-color: #f2f2f2;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
   border: 4px groove #080808;
   border-radius: 7px;
   font-weight: bold;
 }
 .search .form-control input[type="submit"]:hover {
-  background-color: #d5d5d5;
+  background-color: #e6e6e6;
 }
 .search .form-control input[type="submit"]:active {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);

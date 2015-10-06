@@ -1,5 +1,6 @@
-﻿@main-color: #EEEEEE;
-@back-color: darken(@main-color, 5%);
+﻿@main-color: #ffffff;
+@back-color: darken(@main-color, 1%);
+@container_color:#f8f8ff;
 @back-table-color: white;
 @font-color: darken(@main-color, 75%);
 @header-color: darken(@main-color, 60%);
@@ -32,6 +33,8 @@ h1::first-letter, h5::first-letter, h6::first-letter{
 
 
 .personalPage {
+    background-color:@container_color;
+
     height: 100%;
     h5{
         font-weight: "normal"; 
@@ -236,7 +239,7 @@ h1::first-letter, h5::first-letter, h6::first-letter{
 
     /*========================================================*/
 .index{
-
+    background-color:@container_color;
     width: 100%;
     margin: 0;
     float: left;
@@ -269,7 +272,7 @@ h1::first-letter, h5::first-letter, h6::first-letter{
             display: inline-block;
             float: left;
 
-            @media only screen and (max-width: @threshold-4) {
+            @media only screen and (max-width: @threshold-1) {
                 display: block;
                 width: 100%;
             }
@@ -310,14 +313,13 @@ h1::first-letter, h5::first-letter, h6::first-letter{
     }
 
      .tabs {
-	    background: @button-color;
+	    background: @container_color;
     }
     .tabs__caption {
         -webkit-padding-start: 0px;
         margin-left:12%;
         margin-right:12%;
 	    list-style: none;
-	    background: @back-color;
     }
     .tabs__caption li {
         display:inline;
@@ -325,7 +327,6 @@ h1::first-letter, h5::first-letter, h6::first-letter{
             -moz-border-radius: 6px;  /* для firefox */
             -webkit-border-radius: 6px;
                 box-shadow: 0 0 5px rgba(0,0,0,0.4);
-                background-color: @button-color;
                 color: @font-color;
                 text-decoration: none;
         margin: 2*@margin-large @margin-large;
@@ -335,11 +336,10 @@ h1::first-letter, h5::first-letter, h6::first-letter{
     .tabs__caption li:hover,
     .tabs__caption .active {
 	 
-                background-color: @button-hover-color;
+                background-color: @button-hover-color
     }
     .tabs__content {
 	    display: none;
-	    background: @button-color;
     }
     .tabs__content.active {
 	    display: block;
@@ -400,6 +400,7 @@ h1::first-letter, h5::first-letter, h6::first-letter{
 
 /*=====================================================================================*/
 .search{
+    background-color:@container_color;
 
     width: 100%;
     margin: 0;
