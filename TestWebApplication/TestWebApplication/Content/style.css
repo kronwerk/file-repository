@@ -245,23 +245,25 @@ h6::first-letter {
   background: #f8f8ff;
 }
 .index .tabs__caption {
-  -webkit-padding-start: 0px;
-  margin-left: 12%;
-  margin-right: 12%;
-  list-style: none;
+  -webkit-padding-start: 25%;
+  -webkit-align-content: center;
+  width: 70%;
+  align-self: center;
 }
 .index .tabs__caption li {
   display: inline;
-  border-radius: 6px;
+  align-self: center;
+  border-radius: 7px;
   /* свойство для тех кто его поддерживает */
-  -moz-border-radius: 6px;
+  -moz-border-radius: 7px;
   /* для firefox */
-  -webkit-border-radius: 6px;
+  -webkit-border-radius: 7px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
   color: #404040;
   text-decoration: none;
   margin: 0.8% 0.4%;
   font-weight: bold;
+  border: 4px groove #080808;
 }
 .index .tabs__caption li:hover,
 .index .tabs__caption .active {
@@ -299,19 +301,15 @@ h6::first-letter {
   line-height: 20px;
 }
 .index .form-control input[type="submit"] {
-  border-radius: 5px;
-  /* свойство для тех кто его поддерживает */
-  -moz-border-radius: 5px;
-  /* для firefox */
-  -webkit-border-radius: 5px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 1.6%;
-  border: 0;
-  height: 35px;
-  width: 120px;
-  background-color: #f2f2f2;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+  margin: 5% 0 5% 25%;
+  display: block;
+  width: 50%;
+  min-width: 60px;
+  height: 20%;
+  min-height: 40px;
+  border: 4px groove #080808;
+  border-radius: 7px;
+  font-weight: bold;
 }
 .index .form-control input[type="submit"]:hover {
   background-color: #e6e6e6;

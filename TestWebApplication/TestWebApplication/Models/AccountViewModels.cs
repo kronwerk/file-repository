@@ -101,7 +101,11 @@ namespace TestWebApplication.Models
 
         public string Code { get; set; }
     }
-
+    public class SignInUp
+    {
+        public LoginViewModel LoginViewModel { get; set; }
+        public RegisterViewModel RegisterViewModel { get; set; }
+    }
     public class ForgotPasswordViewModel
     {
         [Required]
