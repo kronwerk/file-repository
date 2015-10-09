@@ -34,6 +34,8 @@ namespace TestWebApplication.Controllers
             ViewBag.ID = id;
             ViewBag.Name = String.Format("{0} {1}", type, id);
             ViewBag.Type = type;
+            //Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "MyScript",
+            //    "~/Content/content_chooser.js");
             return View();
         }
 

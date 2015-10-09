@@ -1,42 +1,51 @@
-﻿<script type='text/javascript'>
-    document.getElementById('anch').innerHTML = '<img src="@Url.Content("~/Content/img/delete_icon.png")"/>';
-</script>
-<div class="filePage">
+﻿<div class="filePage">
 
-        <div class="row">
-            <div class="col col-1">
-                <h1>File</h1>
+    <div class="row">
+        <div class="col col-1">
+            <h1>File</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col col-1">
+            <ul class="menu top-menu">
+                <li>
+                    @Html.ActionLink("Personal", "PersonalPage")
+                </li>
+                <li>
+                    @Html.ActionLink("Search", "Search")
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div id="linkkk" class="col col-3">
+            @Html.ActionLink("Prev", "FilePage", new { id = (int)ViewBag.ID - 1 })
+        </div>
+        <div id="justify" class="col col-3">
+            <div text-align="center" class="row row-1">
+                @ViewBag.Name
+            </div>
+            <div id="anch" class="row row-1">
+                6666
+            </div>
+            <div class="row row-1">
+                <img src="@Url.Content("http://aramgurum.ru/w/15/silovoy_ekzoskelet_crysis_1920x1200.jpg")" />
+                lib.ru›STRUGACKIE/comments.txt
+                <video id="example_video_1" class="video-js vjs-default-skin" preload="none" width="400" height="250" controls="controls">
+                    <source src="http://www.osborneparkbc.com.au/WMV/vendoTrotadora.wmv" />
+                </video>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col col-1">
-                <ul class="menu top-menu">
-                    <li>
-                        @Html.ActionLink("Personal", "PersonalPage")
-                    </li>
-                    <li>
-                        @Html.ActionLink("Search", "Search")
-                    </li>
-                </ul>
-            </div>
+        <div id="linkkk" class="col col-3">
+            @Html.ActionLink("Next", "FilePage", new { id = (int)ViewBag.ID + 1 })
         </div>
+    </div>
 
-        <div class="row">
-            <div id="linkkk" class="col col-3">
-                @Html.ActionLink("Prev", "FilePage", new { id = (int)ViewBag.ID - 1 })
-            </div>
-            <div id="justify" class="col col-3">
-                <div text-align="center" class="row row-1">
-                    @ViewBag.Name
-                </div>
-                <div id="anch" class="row row-1">
-                </div>
-            </div>
-            <div id="linkkk" class="col col-3">
-                @Html.ActionLink("Next", "FilePage", new { id = (int)ViewBag.ID + 1 })
-            </div>
-        </div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/myscripts")
+    }
 
 <!-- 
     Или, если вы хотите использовать картинки, кнопки и прочее в качестве ссылки, то используйте следующую конструкцию.
