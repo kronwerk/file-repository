@@ -426,3 +426,98 @@ h6::first-letter {
 .search .form-control input[type="submit"]:active {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
+/*========================================================*/
+.filePage {
+  background-color: #f8f8ff;
+  width: 100%;
+  margin: 0;
+  float: left;
+  height: 100%;
+}
+.filePage div#linkkk {
+  padding: 0;
+  display: inline-block;
+}
+@media only screen and (max-width: 1000px) {
+  .filePage div#linkkk {
+    display: block;
+    width: 100%;
+  }
+}
+.filePage div#linkkk a {
+  border-radius: 6px;
+  /* свойство для тех кто его поддерживает */
+  -moz-border-radius: 6px;
+  /* для firefox */
+  -webkit-border-radius: 6px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  background-color: #f2f2f2;
+  color: #404040;
+  text-decoration: none;
+  padding: 2% 0;
+}
+.filePage div#linkkk a:hover {
+  background-color: #e6e6e6;
+}
+.filePage div#linkkk a:active {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+.filePage img {
+  max-width: 100%;
+}
+.filePage h1 {
+  font-size: 28px;
+  text-align: center;
+  margin: 0.4% auto;
+}
+.filePage h2 {
+  font-size: 18.2px;
+  text-align: center;
+  margin: 0.2% auto;
+  color: #666666;
+}
+.filePage ul.menu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.filePage ul.menu li {
+  text-align: center;
+  padding: 0;
+  display: inline-block;
+  float: left;
+}
+@media only screen and (max-width: 1000px) {
+  .filePage ul.menu li {
+    display: block;
+    width: 100%;
+  }
+}
+.filePage ul.menu li a {
+  border-radius: 6px;
+  /* свойство для тех кто его поддерживает */
+  -moz-border-radius: 6px;
+  /* для firefox */
+  -webkit-border-radius: 6px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  background-color: #f2f2f2;
+  color: #404040;
+  text-decoration: none;
+  padding: 2% 0;
+}
+.filePage ul.menu li a:hover {
+  background-color: #e6e6e6;
+}
+.filePage ul.menu li a:active {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+.filePage .top-menu li {
+  width: 48.2%;
+  margin: 0.8% 0.4%;
+  border: 4px groove #080808;
+  border-radius: 7px;
+  font-weight: bold;
+}
+.filePage .top-menu li a {
+  display: block;
+}
