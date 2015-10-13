@@ -1,1 +1,0 @@
-﻿document.getElementById('anch').innerHtml = "55555";

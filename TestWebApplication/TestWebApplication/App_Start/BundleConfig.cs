@@ -26,9 +26,6 @@ namespace TestWebApplication
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       //"~/Content/bootstrap/bootstrap.css",
                       "~/Content/style.css"));
-
-            bundles.Add(new ScriptBundle("~/bundles/myscripts").Include(
-                    "~/Scripts/content_chooser.js"));
         }
     }
 }

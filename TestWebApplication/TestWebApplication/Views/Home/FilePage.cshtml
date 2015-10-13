@@ -1,4 +1,6 @@
-﻿<div class="filePage">
+﻿@model TestWebApplication.Models.FileModel
+
+<div class="filePage">
 
     <div class="row">
         <div class="col col-1">
@@ -21,31 +23,36 @@
 
     <div class="row">
         <div id="linkkk" class="col col-3">
-            @Html.ActionLink("Prev", "FilePage", new { id = (int)ViewBag.ID - 1 })
+            @Html.ActionLink("Prev", "FilePage", new { id = (int)ViewBag.id - 1 })
         </div>
         <div id="justify" class="col col-3">
             <div text-align="center" class="row row-1">
-                @ViewBag.Name
+                @Model.name
             </div>
             <div id="anch" class="row row-1">
-                6666
-            </div>
-            <div class="row row-1">
-                <img src="@Url.Content("http://aramgurum.ru/w/15/silovoy_ekzoskelet_crysis_1920x1200.jpg")" />
-                lib.ru›STRUGACKIE/comments.txt
-                <video id="example_video_1" class="video-js vjs-default-skin" preload="none" width="400" height="250" controls="controls">
-                    <source src="http://www.osborneparkbc.com.au/WMV/vendoTrotadora.wmv" />
-                </video>
+                @if (Model.type == "text") {
+                    @Url.Content(Model.content)
+                }
+                @if (Model.type == "video")
+                {
+                    <video id="example_video_1" class="video-js vjs-default-skin" preload="none" width="400" height="250" controls="controls">
+                        <source src="@Url.Content(Model.content)" />
+                    </video>
+                }
+                @if (Model.type == "img")
+                {
+                    <img src="@Url.Content(Model.content)" />
+                }
+                @if (Model.type == "audio")
+                {
+                    <audio src="@Model.content" type="audio/mpeg" controls></audio>
+                }
             </div>
         </div>
         <div id="linkkk" class="col col-3">
-            @Html.ActionLink("Next", "FilePage", new { id = (int)ViewBag.ID + 1 })
+            @Html.ActionLink("Next", "FilePage", new { id = (int)ViewBag.id + 1 })
         </div>
     </div>
-
-    @section Scripts {
-        @Scripts.Render("~/bundles/myscripts")
-    }
 
 <!-- 
     Или, если вы хотите использовать картинки, кнопки и прочее в качестве ссылки, то используйте следующую конструкцию.
