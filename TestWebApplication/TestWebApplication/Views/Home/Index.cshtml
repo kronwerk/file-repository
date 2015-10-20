@@ -103,15 +103,19 @@
                     </div>
                     <div class="form-field">
                         @Html.LabelFor(m => m.RegisterViewModel.Password, new { @class = "col-md-2 control-label" })
-                        <div class="col-md-10">
-                            @Html.PasswordFor(m => m.RegisterViewModel.Password, new { @class = "form-control" })
-                        </div>
+                        @Html.PasswordFor(m => m.RegisterViewModel.Password, new { @class = "form-control" })
                     </div>
                     <div class="form-field">
                         @Html.LabelFor(m => m.RegisterViewModel.ConfirmPassword, new { @class = "col-md-2 control-label" })
-                        <div class="col-md-10">
-                            @Html.PasswordFor(m => m.RegisterViewModel.ConfirmPassword, new { @class = "form-control" })
-                        </div>
+                        @Html.PasswordFor(m => m.RegisterViewModel.ConfirmPassword, new { @class = "form-control" })
+                    </div>
+                    <div class="form-field">
+                        @Html.LabelFor(m => m.RegisterViewModel.FirstName, new { @class = "col-md-2 control-label" })
+                        @Html.PasswordFor(m => m.RegisterViewModel.FirstName, new { @class = "form-control" })
+                    </div>
+                    <div class="form-field">
+                        @Html.LabelFor(m => m.RegisterViewModel.LastName, new { @class = "col-md-2 control-label" })
+                        @Html.PasswordFor(m => m.RegisterViewModel.LastName, new { @class = "form-control" })
                     </div>
                     <div class="form-field">
                         <div class="col-md-offset-2 col-md-10">
