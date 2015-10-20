@@ -70,6 +70,16 @@ namespace TestWebApplication.Models
         public string Email { get; set; }
 
         [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "First name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "Last name")]
+        public string LastName { get; set; }
+
+        [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
@@ -80,17 +90,7 @@ namespace TestWebApplication.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 2)]
-        [DataType(DataType.Password)]
-        [Display(Name = "First name")]
-        public string FirstName { get; set; }
-
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 2)]
-        [DataType(DataType.Password)]
-        [Display(Name = "Last name")]
-        public string LastName { get; set; }
+     
     }
 
     public class ResetPasswordViewModel
