@@ -21,7 +21,12 @@ namespace TestWebApplication
             routes.MapRoute(
                 name: "Files",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "FilePage", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
+                name: "Account",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "PersonalPage", id = UrlParameter.Optional }
             );
         }
     }
