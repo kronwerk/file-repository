@@ -16,7 +16,7 @@ namespace TestWebApplication.Controllers
         public ActionResult FilePage(int id = 0)
         {
             int max = 3; int min = 0;
-            Models.FileModel fM = new Models.FileModel();
+            Models.Files fM = new Models.Files();
             if (id.CompareTo(min) < 0)
                 id = 0;
             else if (id.CompareTo(max) > 0)

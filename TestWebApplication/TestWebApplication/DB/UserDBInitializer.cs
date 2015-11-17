@@ -23,42 +23,29 @@ namespace TestWebApplication.DB
                 new FUser { FirstName = "Laura",    LastName = "Norman",   age=21,gender=1, city ="SPb" },
                 new FUser { FirstName = "Nino",     LastName = "Olivetto", age=21,gender=1, city ="SPb" }
             };
-            users.ForEach(s => context.users.Add(s));
+            users.ForEach(s => context.FUsers.Add(s));
             context.SaveChanges();
 
-            var courses = new List<Course>
+            var files = new List<Files>
             {
-                new Course { Title = "Chemistry",      Credits = 3, },
-                new Course { Title = "Microeconomics", Credits = 3, },
-                new Course { Title = "Macroeconomics", Credits = 3, },
-                new Course { Title = "Calculus",       Credits = 4, },
-                new Course { Title = "Trigonometry",   Credits = 4, },
-                new Course { Title = "Composition",    Credits = 3, },
-                new Course { Title = "Literature",     Credits = 4, }
+                new Files { name = "file1",         type = "text",content="some text", repo=2 },
+                new Files { name = "file2",         type = "text",content="some text blah" },
+                new Files { name = "one_more_file", type = "text",content="some text more" },
+                new Files { name = "and more",      type = "text",content="more some text" },
+                new Files { name = "OneMoreThing",  type = "text",content="some more text" }
             };
-            courses.ForEach(s => context.Courses.Add(s));
+            files.ForEach(s => context.Files.Add(s));
             context.SaveChanges();
 
-            var enrollments = new List<Enrollment>
+            var repos = new List<Repositories>
             {
-                new Enrollment { StudentID = 1, CourseID = 1, Grade = 1 },
-                new Enrollment { StudentID = 1, CourseID = 2, Grade = 3 },
-                new Enrollment { StudentID = 1, CourseID = 3, Grade = 1 },
-                new Enrollment { StudentID = 2, CourseID = 4, Grade = 2 },
-                new Enrollment { StudentID = 2, CourseID = 5, Grade = 4 },
-                new Enrollment { StudentID = 2, CourseID = 6, Grade = 4 },
-                new Enrollment { StudentID = 3, CourseID = 1            },
-                new Enrollment { StudentID = 4, CourseID = 1,           },
-                new Enrollment { StudentID = 4, CourseID = 2, Grade = 4 },
-                new Enrollment { StudentID = 5, CourseID = 3, Grade = 3 },
-                new Enrollment { StudentID = 6, CourseID = 4            },
-                new Enrollment { StudentID = 7, CourseID = 5, Grade = 2 },
+                new Repositories {name="file_repo",owner=2,filesNum=1,usersNum=1 },
+                new Repositories {name="file_repo2",owner=4,filesNum=1,usersNum=1 },
+                new Repositories {name="repo_file",owner=1,filesNum=1,usersNum=1 },
+                new Repositories {name="some_repos",owner=3,filesNum=1,usersNum=1 }
             };
-            enrollments.ForEach(s => context.Enrollments.Add(s));
+            repos.ForEach(s => context.Repositories.Add(s));
             context.SaveChanges();
         }
-    }
-}
-    {
     }
 }

@@ -9,8 +9,8 @@ namespace TestWebApplication.Models
     public class UserDBContext : DbContext
     {
         public DbSet<FUser> FUsers { get; set; }
-        public DbSet<FileModel> Files { get; set; }
-        public DbSet<RepositoryClass> Repositories { get; set; }
+        public DbSet<Files> Files { get; set; }
+        public DbSet<Repositories> Repositories { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
