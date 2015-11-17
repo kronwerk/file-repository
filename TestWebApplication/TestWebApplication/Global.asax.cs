@@ -21,7 +21,7 @@ namespace TestWebApplication
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            Database.SetInitializer<UserDBContext>(new UserDBInitializer());
+            Database.SetInitializer(new UserDBInitializer());
         }
     }
 }

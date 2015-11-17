@@ -17,7 +17,7 @@ namespace TestWebApplication.Controllers
         // GET: FUsers
         public ActionResult Index()
         {
-            return View(db.FUsers.ToList());
+            return View(db.FUser.ToList());
         }
 
         // GET: FUsers/Details/5
@@ -27,7 +27,7 @@ namespace TestWebApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            FUser fUser = db.FUsers.Find(id);
+            FUser fUser = db.FUser.Find(id);
             if (fUser == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace TestWebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.FUsers.Add(fUser);
+                db.FUser.Add(fUser);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace TestWebApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            FUser fUser = db.FUsers.Find(id);
+            FUser fUser = db.FUser.Find(id);
             if (fUser == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace TestWebApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            FUser fUser = db.FUsers.Find(id);
+            FUser fUser = db.FUser.Find(id);
             if (fUser == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace TestWebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            FUser fUser = db.FUsers.Find(id);
-            db.FUsers.Remove(fUser);
+            FUser fUser = db.FUser.Find(id);
+            db.FUser.Remove(fUser);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

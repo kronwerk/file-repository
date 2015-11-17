@@ -8,7 +8,7 @@ namespace TestWebApplication.Models
 {
     public class UserDBContext : DbContext
     {
-        public DbSet<FUser> FUsers { get; set; }
+        public DbSet<FUser> FUser { get; set; }
         public DbSet<Files> Files { get; set; }
         public DbSet<Repositories> Repositories { get; set; }
 

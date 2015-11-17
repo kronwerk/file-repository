@@ -23,7 +23,7 @@ namespace TestWebApplication.DB
                 new FUser { FirstName = "Laura",    LastName = "Norman",   age=21,gender=1, city ="SPb" },
                 new FUser { FirstName = "Nino",     LastName = "Olivetto", age=21,gender=1, city ="SPb" }
             };
-            users.ForEach(s => context.FUsers.Add(s));
+            users.ForEach(s => context.FUser.Add(s));
             context.SaveChanges();
 
             var files = new List<Files>
