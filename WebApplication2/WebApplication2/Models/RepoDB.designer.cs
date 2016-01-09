@@ -30,12 +30,12 @@ namespace WebApplication2.Models
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertAspNetUser(AspNetUser instance);
-    partial void UpdateAspNetUser(AspNetUser instance);
-    partial void DeleteAspNetUser(AspNetUser instance);
     partial void InsertRepository(Repository instance);
     partial void UpdateRepository(Repository instance);
     partial void DeleteRepository(Repository instance);
+    partial void InsertAspNetUser(AspNetUser instance);
+    partial void UpdateAspNetUser(AspNetUser instance);
+    partial void DeleteAspNetUser(AspNetUser instance);
     partial void InsertFile(File instance);
     partial void UpdateFile(File instance);
     partial void DeleteFile(File instance);
@@ -71,19 +71,19 @@ namespace WebApplication2.Models
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<AspNetUser> AspNetUsers
-		{
-			get
-			{
-				return this.GetTable<AspNetUser>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Repository> Repositories
 		{
 			get
 			{
 				return this.GetTable<Repository>();
+			}
+		}
+		
+		public System.Data.Linq.Table<AspNetUser> AspNetUsers
+		{
+			get
+			{
+				return this.GetTable<AspNetUser>();
 			}
 		}
 		
@@ -93,6 +93,281 @@ namespace WebApplication2.Models
 			{
 				return this.GetTable<File>();
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Repositories")]
+	public partial class Repository : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Name;
+		
+		private string _Owner;
+		
+		private string _Users;
+		
+		private string _Files;
+		
+		private string _tags;
+		
+		private System.Nullable<System.DateTime> _LastChangeR;
+		
+		private EntitySet<File> _Files1;
+		
+		private EntityRef<AspNetUser> _AspNetUser;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnOwnerChanging(string value);
+    partial void OnOwnerChanged();
+    partial void OnUsersChanging(string value);
+    partial void OnUsersChanged();
+    partial void OnFilesChanging(string value);
+    partial void OnFilesChanged();
+    partial void OntagsChanging(string value);
+    partial void OntagsChanged();
+    partial void OnLastChangeRChanging(System.Nullable<System.DateTime> value);
+    partial void OnLastChangeRChanged();
+    #endregion
+		
+		public Repository()
+		{
+			this._Files1 = new EntitySet<File>(new Action<File>(this.attach_Files1), new Action<File>(this.detach_Files1));
+			this._AspNetUser = default(EntityRef<AspNetUser>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Owner", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
+		public string Owner
+		{
+			get
+			{
+				return this._Owner;
+			}
+			set
+			{
+				if ((this._Owner != value))
+				{
+					if (this._AspNetUser.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnOwnerChanging(value);
+					this.SendPropertyChanging();
+					this._Owner = value;
+					this.SendPropertyChanged("Owner");
+					this.OnOwnerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Users", DbType="NVarChar(MAX)")]
+		public string Users
+		{
+			get
+			{
+				return this._Users;
+			}
+			set
+			{
+				if ((this._Users != value))
+				{
+					this.OnUsersChanging(value);
+					this.SendPropertyChanging();
+					this._Users = value;
+					this.SendPropertyChanged("Users");
+					this.OnUsersChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Files", DbType="NVarChar(MAX)")]
+		public string Files
+		{
+			get
+			{
+				return this._Files;
+			}
+			set
+			{
+				if ((this._Files != value))
+				{
+					this.OnFilesChanging(value);
+					this.SendPropertyChanging();
+					this._Files = value;
+					this.SendPropertyChanged("Files");
+					this.OnFilesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tags", DbType="NVarChar(MAX)")]
+		public string tags
+		{
+			get
+			{
+				return this._tags;
+			}
+			set
+			{
+				if ((this._tags != value))
+				{
+					this.OntagsChanging(value);
+					this.SendPropertyChanging();
+					this._tags = value;
+					this.SendPropertyChanged("tags");
+					this.OntagsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastChangeR", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LastChangeR
+		{
+			get
+			{
+				return this._LastChangeR;
+			}
+			set
+			{
+				if ((this._LastChangeR != value))
+				{
+					this.OnLastChangeRChanging(value);
+					this.SendPropertyChanging();
+					this._LastChangeR = value;
+					this.SendPropertyChanged("LastChangeR");
+					this.OnLastChangeRChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Repository_File", Storage="_Files1", ThisKey="Id", OtherKey="Repo")]
+		public EntitySet<File> Files1
+		{
+			get
+			{
+				return this._Files1;
+			}
+			set
+			{
+				this._Files1.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_Repository", Storage="_AspNetUser", ThisKey="Owner", OtherKey="Id", IsForeignKey=true)]
+		public AspNetUser AspNetUser
+		{
+			get
+			{
+				return this._AspNetUser.Entity;
+			}
+			set
+			{
+				AspNetUser previousValue = this._AspNetUser.Entity;
+				if (((previousValue != value) 
+							|| (this._AspNetUser.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._AspNetUser.Entity = null;
+						previousValue.Repositories.Remove(this);
+					}
+					this._AspNetUser.Entity = value;
+					if ((value != null))
+					{
+						value.Repositories.Add(this);
+						this._Owner = value.Id;
+					}
+					else
+					{
+						this._Owner = default(string);
+					}
+					this.SendPropertyChanged("AspNetUser");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Files1(File entity)
+		{
+			this.SendPropertyChanging();
+			entity.Repository = this;
+		}
+		
+		private void detach_Files1(File entity)
+		{
+			this.SendPropertyChanging();
+			entity.Repository = null;
 		}
 	}
 	
@@ -402,257 +677,6 @@ namespace WebApplication2.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Repositories")]
-	public partial class Repository : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _Name;
-		
-		private string _Owner;
-		
-		private string _Users;
-		
-		private string _Files;
-		
-		private string _tags;
-		
-		private EntitySet<File> _Files1;
-		
-		private EntityRef<AspNetUser> _AspNetUser;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnOwnerChanging(string value);
-    partial void OnOwnerChanged();
-    partial void OnUsersChanging(string value);
-    partial void OnUsersChanged();
-    partial void OnFilesChanging(string value);
-    partial void OnFilesChanged();
-    partial void OntagsChanging(string value);
-    partial void OntagsChanged();
-    #endregion
-		
-		public Repository()
-		{
-			this._Files1 = new EntitySet<File>(new Action<File>(this.attach_Files1), new Action<File>(this.detach_Files1));
-			this._AspNetUser = default(EntityRef<AspNetUser>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Owner", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
-		public string Owner
-		{
-			get
-			{
-				return this._Owner;
-			}
-			set
-			{
-				if ((this._Owner != value))
-				{
-					if (this._AspNetUser.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnOwnerChanging(value);
-					this.SendPropertyChanging();
-					this._Owner = value;
-					this.SendPropertyChanged("Owner");
-					this.OnOwnerChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Users", DbType="NVarChar(MAX)")]
-		public string Users
-		{
-			get
-			{
-				return this._Users;
-			}
-			set
-			{
-				if ((this._Users != value))
-				{
-					this.OnUsersChanging(value);
-					this.SendPropertyChanging();
-					this._Users = value;
-					this.SendPropertyChanged("Users");
-					this.OnUsersChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Files", DbType="NVarChar(MAX)")]
-		public string Files
-		{
-			get
-			{
-				return this._Files;
-			}
-			set
-			{
-				if ((this._Files != value))
-				{
-					this.OnFilesChanging(value);
-					this.SendPropertyChanging();
-					this._Files = value;
-					this.SendPropertyChanged("Files");
-					this.OnFilesChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tags", DbType="NVarChar(MAX)")]
-		public string tags
-		{
-			get
-			{
-				return this._tags;
-			}
-			set
-			{
-				if ((this._tags != value))
-				{
-					this.OntagsChanging(value);
-					this.SendPropertyChanging();
-					this._tags = value;
-					this.SendPropertyChanged("tags");
-					this.OntagsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Repository_File", Storage="_Files1", ThisKey="Id", OtherKey="Repo")]
-		public EntitySet<File> Files1
-		{
-			get
-			{
-				return this._Files1;
-			}
-			set
-			{
-				this._Files1.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_Repository", Storage="_AspNetUser", ThisKey="Owner", OtherKey="Id", IsForeignKey=true)]
-		public AspNetUser AspNetUser
-		{
-			get
-			{
-				return this._AspNetUser.Entity;
-			}
-			set
-			{
-				AspNetUser previousValue = this._AspNetUser.Entity;
-				if (((previousValue != value) 
-							|| (this._AspNetUser.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._AspNetUser.Entity = null;
-						previousValue.Repositories.Remove(this);
-					}
-					this._AspNetUser.Entity = value;
-					if ((value != null))
-					{
-						value.Repositories.Add(this);
-						this._Owner = value.Id;
-					}
-					else
-					{
-						this._Owner = default(string);
-					}
-					this.SendPropertyChanged("AspNetUser");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Files1(File entity)
-		{
-			this.SendPropertyChanging();
-			entity.Repository = this;
-		}
-		
-		private void detach_Files1(File entity)
-		{
-			this.SendPropertyChanging();
-			entity.Repository = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Files")]
 	public partial class File : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -666,6 +690,8 @@ namespace WebApplication2.Models
 		private string _Path;
 		
 		private int _Repo;
+		
+		private System.Nullable<System.DateTime> _LastChange;
 		
 		private EntityRef<Repository> _Repository;
 		
@@ -681,6 +707,8 @@ namespace WebApplication2.Models
     partial void OnPathChanged();
     partial void OnRepoChanging(int value);
     partial void OnRepoChanged();
+    partial void OnLastChangeChanging(System.Nullable<System.DateTime> value);
+    partial void OnLastChangeChanged();
     #endregion
 		
 		public File()
@@ -769,6 +797,26 @@ namespace WebApplication2.Models
 					this._Repo = value;
 					this.SendPropertyChanged("Repo");
 					this.OnRepoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastChange", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LastChange
+		{
+			get
+			{
+				return this._LastChange;
+			}
+			set
+			{
+				if ((this._LastChange != value))
+				{
+					this.OnLastChangeChanging(value);
+					this.SendPropertyChanging();
+					this._LastChange = value;
+					this.SendPropertyChanged("LastChange");
+					this.OnLastChangeChanged();
 				}
 			}
 		}
