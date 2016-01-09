@@ -87,11 +87,12 @@ namespace WebApplication2.Controllers
                 catch(Exception ex)
                 {
                     ModelState.AddModelError("", "Can't update. "+ ex);
-                    return View(model);
+                    return RedirectToAction("Profile","Account");
                 }
                 conn.Close();
                 conn.Dispose();
-                return RedirectToAction("Create");
+                ViewData["Message"] = "Success";
+                return View(model);
             }
             catch
             {
@@ -127,19 +128,39 @@ namespace WebApplication2.Controllers
         // GET: /Repository/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
-        }
-
-        //
-        // POST: /Repository/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                string connStr = @"Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\aspnet-WebApplication2-20160108044733.mdf;Initial Catalog=aspnet-WebApplication2-20160108044733;Integrated Security=True";
+                SqlConnection conn = new SqlConnection(connStr);
+                try
+                {
+                    //пробуем подключится
+                    conn.Open();
+                }
+                catch (SqlException se)
+                {
+                    ModelState.AddModelError("", "can't open connection" + se);
+                }
+                string query = "DELETE FROM Repositories" +
+                    " where Id = @Id";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlParameter param = new SqlParameter();
+                param.ParameterName = "@Id";
+                param.Value = id;
+                param.SqlDbType = SqlDbType.Int;
+                cmd.Parameters.Add(param);
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", "Can't update. " + ex);
+                }
+                conn.Close();
+                conn.Dispose();
+                ViewData["Message"] = "Success";
+                return RedirectToAction("Profile", "Account");
             }
             catch
             {

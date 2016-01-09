@@ -14,7 +14,8 @@
         <h4>Repository</h4>
         <hr />
         @Html.ValidationSummary(true)
-
+@if (ViewData["Message"] != null) { 
+    <h4 style="color:#00ff21">Success</h4>}
         <div class="form-group">
             @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
