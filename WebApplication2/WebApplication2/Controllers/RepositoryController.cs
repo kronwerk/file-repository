@@ -93,17 +93,23 @@ namespace WebApplication2.Controllers
                     ModelState.AddModelError("", "Can't update. "+ ex);
                     return RedirectToAction("Profile","Account");
                 }
+                string query1="SELECT * FROM Repositories WHERE Name='"+model.Name+"';";
+                SqlCommand cmd1 = new SqlCommand(query1, conn);
+                SqlDataReader dr=cmd1.ExecuteReader(CommandBehavior.CloseConnection);
+                dr.Read();
+                string dirName = dr.GetValue(0).ToString();
                 conn.Close();
                 conn.Dispose();
-                if(Directory.Exists("~/Repos/"+model.Owner))
+                if (Directory.Exists("~/Repos/" + User.Identity.GetUserId()))
                 {
-                    DirectoryInfo Dir = new DirectoryInfo(Request.MapPath("~/Repos/" + model.Owner.ToString()));
+                    DirectoryInfo Dir = new DirectoryInfo(Request.MapPath("~/Repos/" + User.Identity.GetUserId()));
+                    Dir.CreateSubdirectory(dirName);
                 }
                 else
                 {
-                    DirectoryInfo Dir = new DirectoryInfo(Request.MapPath("~/Repos/" + model.Owner.ToString()));
+                    DirectoryInfo Dir = new DirectoryInfo(Request.MapPath("~/Repos/" + User.Identity.GetUserId()));
                     Dir.Create();
-                    Dir.CreateSubdirectory(model.Name);
+                    Dir.CreateSubdirectory(dirName);
                 }
                 ViewData["Message"] = "Success";
                 return View(model);
@@ -178,7 +184,7 @@ namespace WebApplication2.Controllers
                 }
                 conn.Close();
                 conn.Dispose();
-                DirectoryInfo Dir = new DirectoryInfo(Request.MapPath("~/Repos/" + model.Owner +"/"+model.Name));
+                DirectoryInfo Dir = new DirectoryInfo(Request.MapPath("~/Repos/" + User.Identity.GetUserId() +"/"+id));
                 Dir.Delete();
                 ViewData["Message"] = "Success";
                 return RedirectToAction("Profile", "Account");
