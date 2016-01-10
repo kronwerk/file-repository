@@ -236,6 +236,7 @@
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Repository\Create.cshtml" />
+    <Content Include="Views\Repository\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

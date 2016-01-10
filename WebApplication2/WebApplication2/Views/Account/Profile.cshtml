@@ -98,7 +98,7 @@
                        <td><center><h5><b>@dr.GetValue(5).ToString().Trim() </b></h5></center></td>
                        <td><center><h5><b>@dr.GetValue(6).ToString().Trim() </b></h5></center></td>
                        <td style="table-layout: auto;width:10%; "> @Html.ActionLink("Delete", "Delete", "Repository", routeValues: new { id = dr.GetValue(0) }, htmlAttributes: new { title = "Delete Repository", @class = "btn btn-info" })</td>
-                       <td style="table-layout: auto;width:10%; "> <a id="go" class=" btn btn-info" >Edit</a></td>
+                       <td style="table-layout: auto;width:10%; "> @Html.ActionLink("Edit", "Edit", "Repository", routeValues: new { id = dr.GetValue(0) }, htmlAttributes: new { title = "Delete Repository", @class = "btn btn-info" })</td>
                    </tr> 
                 }
                 @{
@@ -108,7 +108,7 @@
                     
             </tbody>
         </table>
-        <center><button class="btn btn-default">@Html.ActionLink("Create Repository", "Create", "Repository", routeValues: null, htmlAttributes: new { title = "New Repository" })</button></center>
+        <center>@Html.ActionLink("Create Repository", "Create", "Repository", routeValues: null, htmlAttributes: new { title = "New Repository",@class="btn btn-default" })</center>
 
     </div>
 </div>

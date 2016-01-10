@@ -95,13 +95,13 @@ namespace WebApplication2.Controllers
                 }
                 conn.Close();
                 conn.Dispose();
-                if(Directory.Exists("~/"+model.Owner))
+                if(Directory.Exists("~/Repos/"+model.Owner))
                 {
-                    DirectoryInfo Dir = new DirectoryInfo(Request.MapPath("~/" + model.Owner));
+                    DirectoryInfo Dir = new DirectoryInfo(Request.MapPath("~/Repos/" + model.Owner.ToString()));
                 }
                 else
                 {
-                    DirectoryInfo Dir = new DirectoryInfo(Request.MapPath("~/" + model.Owner));
+                    DirectoryInfo Dir = new DirectoryInfo(Request.MapPath("~/Repos/" + model.Owner.ToString()));
                     Dir.Create();
                     Dir.CreateSubdirectory(model.Name);
                 }
@@ -117,9 +117,10 @@ namespace WebApplication2.Controllers
 
         //
         // GET: /Repository/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id, RepoEditModel model)
         {
-            return View();
+            ViewBag.repoId = id;
+            return View(model);
         }
 
         //
@@ -141,7 +142,7 @@ namespace WebApplication2.Controllers
 
         //
         // GET: /Repository/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id,CreateViewModel model)
         {
             try
             {
@@ -155,6 +156,7 @@ namespace WebApplication2.Controllers
                 catch (SqlException se)
                 {
                     ModelState.AddModelError("", "can't open connection" + se);
+                    return RedirectToAction("Profile", "Account", model);
                 }
                 string query = "DELETE FROM Repositories" +
                     " where Id = @Id";
@@ -171,15 +173,20 @@ namespace WebApplication2.Controllers
                 catch (Exception ex)
                 {
                     ModelState.AddModelError("", "Can't update. " + ex);
+                    return RedirectToAction("Profile", "Account", model);
+
                 }
                 conn.Close();
                 conn.Dispose();
+                DirectoryInfo Dir = new DirectoryInfo(Request.MapPath("~/Repos/" + model.Owner +"/"+model.Name));
+                Dir.Delete();
                 ViewData["Message"] = "Success";
                 return RedirectToAction("Profile", "Account");
             }
-            catch
+            catch(Exception ex)
             {
-                return View();
+                ModelState.AddModelError("", "Can't. " + ex);
+                return RedirectToAction("Profile", "Account", model);
             }
         }
 
@@ -245,7 +252,7 @@ namespace WebApplication2.Controllers
 
                  param = new SqlParameter();
                  param.ParameterName = "@Path";
-                 param.Value = "~/" + owner + "/" + repoName + "/" + fileName;
+                 param.Value = "~/Repos/" + owner + "/" + repoName + "/" + fileName;
                  param.SqlDbType = SqlDbType.NVarChar;
                  cmd.Parameters.Add(param);
 
@@ -279,7 +286,7 @@ namespace WebApplication2.Controllers
                  conn.Dispose();
                  ViewData["Message"] = "Success";
 
-                 var path = Path.Combine(Server.MapPath("~/"+owner+"/"+repoName+"/"), fileName);
+                 var path = Path.Combine(Server.MapPath("~/Repos/"+owner+"/"+repoName+"/"), fileName);
                     file.SaveAs(path);
                  }
              }
