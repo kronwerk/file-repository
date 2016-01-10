@@ -9,15 +9,17 @@
 }
 
 <h2>ViewBag.Title</h2>
-@{  int id = ViewBag.repoId;
+@{  
+    bool flag = false;
+    int id = ViewBag.repoId;
     string connStr = @"Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\aspnet-WebApplication2-20160108044733.mdf;Initial Catalog=aspnet-WebApplication2-20160108044733;Integrated Security=True";
-  SqlConnection conn = new SqlConnection(connStr);
-  conn.Open();
-  string query = "SELECT * FROM Repositories WHERE Id='" + id + "';";
-  SqlCommand cmd = new SqlCommand(query, conn);
-  SqlDataReader dr = cmd.ExecuteReader();
-  dr.Read();
-  string owner = dr.GetValue(2).ToString();
+    SqlConnection conn = new SqlConnection(connStr);
+    conn.Open();
+    string query = "SELECT * FROM Repositories WHERE Id='" + id + "';";
+    SqlCommand cmd = new SqlCommand(query, conn);
+    SqlDataReader dr = cmd.ExecuteReader();
+    dr.Read();
+    string owner = dr.GetValue(2).ToString();
 }
 <div class="row">
     <div class="col-md-4">
@@ -31,6 +33,10 @@
         }
         <h2>Owner: @Html.Label(dr.GetValue(1).ToString())</h2>
         @if(owner==User.Identity.GetUserId()){
+            flag=true;
+        }
+        @if (flag)
+        {
             @Html.ActionLink("Delete", "Delete", "Repository", routeValues: new { id = dr.GetValue(0) }, htmlAttributes: new { title = "Delete Repository", @class = "btn btn-default" })
         }
         <center><h2>Users</h2></center>
@@ -80,8 +86,10 @@
                         <td><center><h5><b>@dr.GetValue(6).ToString().Trim() </b></h5></center></td>
                         <td><center><h5><b>@dr.GetValue(4).ToString().Trim() </b></h5></center></td>
                         <td><center><h5><b>@dr.GetValue(5).ToString().Trim() </b></h5></center></td>
-                        <td style="table-layout: auto;width:10%; "> @Html.ActionLink("Delete", "DeleteFile", "Repository", routeValues: new { id = dr.GetValue(0) }, htmlAttributes: new { title = "Delete File", @class = "btn btn-info" })</td>
-                        <td style="table-layout: auto;width:10%; "> <a href="#" class=" btn btn-danger">Edit</a></td>
+                        @if(flag){
+                            <td style="table-layout: auto;width:10%; "> @Html.ActionLink("Delete", "DeleteFile", "Repository", routeValues: new { id = dr.GetValue(0) }, htmlAttributes: new { title = "Delete File", @class = "btn btn-info" })</td>
+                            <td style="table-layout: auto;width:10%; "> <a href="#" class=" btn btn-danger">Edit</a></td>
+                        }
                     </tr>
                 }
                 @{
@@ -91,7 +99,8 @@
 
             </tbody>
         </table>
+        @if (flag) { 
         <center><button class="btn btn-default">@Html.ActionLink("Upload File", "Upload", "Repository", routeValues: null, htmlAttributes: new { title = "New Repository" })</button></center>
-
+        }
     </div>
 </div>
