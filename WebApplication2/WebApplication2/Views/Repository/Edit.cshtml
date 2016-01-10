@@ -51,6 +51,11 @@
                 @while (dr.Read())
                 {
                     <tr class="default">
+                        @{if (!flag && User.Identity.GetUserId() == dr.GetValue(0).ToString().Trim())
+                          {
+                              flag = true;
+                          }
+                        }
                         <td><center><h5><b>@dr.GetValue(0).ToString().Trim() </b></h5></center></td>                       
                     </tr>
                 }
