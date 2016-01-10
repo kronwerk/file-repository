@@ -25,4 +25,24 @@ namespace WebApplication2.Models
         public DateTime LastChangeR { get; set; }
     }
 
+    public class RepoEditModel
+    {
+        [Required]
+        [Display(Name = "File name")]
+        public string Name { get; set; }
+
+
+        [Display(Name = "User")]
+        public int User { get; set; }
+
+        [Display(Name = "Repository")]
+        public int Repo { get; set; }
+
+        [Display(Name = "Path")]
+        public string Path { get; set; }
+
+        [Display(Name = "Last Change")]
+        public DateTime LastChange { get; set; }
+    }
+
 }

@@ -73,6 +73,16 @@
     <div class="col-md-8">
         <center><h1>Repositories</h1></center>
         <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <td><center>Name</center></td>
+                    <td><center>Tags</center></td>
+                    <td><center>Last Update Time</center></td>
+                    <td><center>Delete</center></td>
+                    <td><center>Edit</center></td>
+
+                </tr>
+            </thead>
             <tbody>
                 @{  string connStr = @"Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\aspnet-WebApplication2-20160108044733.mdf;Initial Catalog=aspnet-WebApplication2-20160108044733;Integrated Security=True";
                     SqlConnection conn = new SqlConnection(connStr);
@@ -84,21 +94,25 @@
                 @while (dr.Read())
                 {
                    <tr class="info">
-                       <td>@dr.GetValue(1).ToString().Trim() </td>
-                       <td>@dr.GetValue(6).ToString().Trim() </td>
+                       <td><center><h5><b>@dr.GetValue(1).ToString().Trim() </b></h5></center></td>
+                       <td><center><h5><b>@dr.GetValue(5).ToString().Trim() </b></h5></center></td>
+                       <td><center><h5><b>@dr.GetValue(6).ToString().Trim() </b></h5></center></td>
                        <td style="table-layout: auto;width:10%; "> @Html.ActionLink("Delete", "Delete", "Repository", routeValues: new { id = dr.GetValue(0) }, htmlAttributes: new { title = "Delete Repository", @class = "btn btn-info" })</td>
+                       <td style="table-layout: auto;width:10%; "> <a id="go" class=" btn btn-info" >Edit</a></td>
                    </tr> 
                 }
                 @{
                     conn.Close();
-                    conn.Dispose();       
-                }               
+                    conn.Dispose();
+                }
+                    
             </tbody>
         </table>
         <center><button class="btn btn-default">@Html.ActionLink("Create Repository", "Create", "Repository", routeValues: null, htmlAttributes: new { title = "New Repository" })</button></center>
 
     </div>
 </div>
+     
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
