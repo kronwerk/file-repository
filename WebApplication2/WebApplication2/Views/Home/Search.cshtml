@@ -1,0 +1,57 @@
+﻿@using System.Data
+@using System.Data.SqlClient
+@{
+    ViewBag.Title = "Search";
+}
+<h2>@ViewBag.Title.</h2>
+<form id="live-search" action=""  method="post">
+    <fieldset>
+        <input type="text" class="form-control" id="filter" value="" placeholder="Search" />
+        <span id="filter-count"></span>
+    </fieldset>
+</form>
+@{  
+string connStr = @"Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\aspnet-WebApplication2-20160108044733.mdf;Initial Catalog=aspnet-WebApplication2-20160108044733;Integrated Security=True";
+                    SqlConnection conn = new SqlConnection(connStr);
+                    conn.Open();
+                    string query = "SELECT * FROM Repositories;";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+}
+
+<nav class="list-group">
+    <ul>
+        @while (dr.Read())
+                {
+        <li>@Html.ActionLink(dr.GetValue(1).ToString(), "Edit", "Repository", routeValues: new { id = dr.GetValue(0) }, htmlAttributes: new { title = "Delete Repository", @class = "list-group-item" })</li>
+                }
+    </ul>
+</nav>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#filter").keyup(function(){
+
+        // Retrieve the input field text and reset the count to zero
+        var filter = $(this).val(), count = 0;
+
+        // Loop through the comment list
+        $("nav ul li").each(function(){
+
+            // If the list item does not contain the text phrase fade it out
+            if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+                $(this).fadeOut();
+
+            // Show the list item if the phrase matches and increase the count by 1
+            } else {
+                $(this).show();
+                count++;
+            }
+        });
+
+        // Update the count
+        var numberItems = count;
+        $("#filter-count").text("Number of Comments = "+count);
+    });
+});
+</script>

@@ -97,7 +97,7 @@
                        <td><center><h5><b>@dr.GetValue(1).ToString().Trim() </b></h5></center></td>
                        <td><center><h5><b>@dr.GetValue(5).ToString().Trim() </b></h5></center></td>
                        <td><center><h5><b>@dr.GetValue(6).ToString().Trim() </b></h5></center></td>
-                       <td style="table-layout: auto;width:10%; "> @Html.ActionLink("Delete", "Delete", "Repository", routeValues: new { id = dr.GetValue(0) }, htmlAttributes: new { title = "Delete Repository", @class = "btn btn-info" })</td>
+                       <td style="table-layout: auto;width:10%; "> @Html.ActionLink("Delete", "Delete", "Repository", routeValues: new { id = dr.GetValue(0) }, htmlAttributes: new { title = "Delete Repository", @class = "btn btn-danger" })</td>
                        <td style="table-layout: auto;width:10%; "> @Html.ActionLink("Edit", "Edit", "Repository", routeValues: new { id = dr.GetValue(0) }, htmlAttributes: new { title = "Delete Repository", @class = "btn btn-info" })</td>
                    </tr> 
                 }
