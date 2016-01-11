@@ -417,5 +417,56 @@ namespace WebApplication2.Controllers
             conn.Dispose();
             return RedirectToAction("Edit", routeValues: new { id = repoId, model = model });
         }
+        public ActionResult DeleteUser(RepoEditModel model)
+        {
+            int repoId = model.Repo;
+            if (model.NewUser == null)
+            {
+                ModelState.AddModelError("", "Enter username!!");
+                return RedirectToAction("Edit", routeValues: new { id = repoId, model = model });
+            }
+            string connStr = @"Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\aspnet-WebApplication2-20160108044733.mdf;Initial Catalog=aspnet-WebApplication2-20160108044733;Integrated Security=True";
+            SqlConnection conn = new SqlConnection(connStr);
+            try
+            {
+                //пробуем подключится
+                conn.Open();
+            }
+            catch (SqlException se)
+            {
+                ModelState.AddModelError("", "can't open connection" + se);
+                return RedirectToAction("Edit", routeValues: new { id = repoId, model = model });
+            }
+
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var currentUser = manager.FindByName(model.NewUser);
+            string query = "DELETE FROM Connection" +
+                " WHERE Users = @Users AND Repos = @Repos";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlParameter param = new SqlParameter();
+            param.ParameterName = "@Users";
+            param.Value = currentUser.Id;
+            param.SqlDbType = SqlDbType.NVarChar;
+            cmd.Parameters.Add(param);
+
+            param = new SqlParameter();
+            param.ParameterName = "@Repos";
+            param.Value = repoId;
+            param.SqlDbType = SqlDbType.Int;
+            cmd.Parameters.Add(param);
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Can't update. " + ex);
+                return RedirectToAction("Edit", routeValues: new { id = repoId, model = model });
+
+            }
+            conn.Close();
+            conn.Dispose();
+            return RedirectToAction("Edit", routeValues: new { id = repoId, model = model });
+        }
     }
 }
