@@ -12,6 +12,7 @@ namespace WebApplication2.Models
         [Display(Name = "Owner")]
         public int Owner { get; set; }
 
+
         [Display(Name = "Users")]
         public string Users { get; set; }
 
@@ -27,10 +28,11 @@ namespace WebApplication2.Models
 
     public class RepoEditModel
     {
-        [Required]
         [Display(Name = "File name")]
         public string Name { get; set; }
 
+        [Display(Name = "New User")]
+        public string NewUser { get; set; }
 
         [Display(Name = "User")]
         public string User { get; set; }

@@ -2,13 +2,14 @@
 @using System.Data.SqlClient
 @using Microsoft.AspNet.Identity;
 @using Microsoft.AspNet.Identity.EntityFramework;
+@using WebApplication2.Models;
+
 @model WebApplication2.Models.RepoEditModel
-@Page validateRequest="false"
 @{
-    ViewBag.Title = "";
+    ViewBag.Title = "Repository Manager";
 }
 
-<h2>ViewBag.Title</h2>
+<h2>@ViewBag.Title</h2>
 @{  
     bool flag = false;
     int id = ViewBag.repoId;
@@ -23,6 +24,7 @@
 }
 <div class="row">
     <div class="col-md-4">
+        @Html.ValidationSummary()
         <h3 style="display:inline">@Html.Label("Welcome to " + @dr.GetValue(1).ToString() + "!")   </h3>
         @{
             string repoName=@dr.GetValue(1).ToString();
@@ -46,6 +48,7 @@
             cmd = new SqlCommand(query, conn);
             dr.Close();
             dr = cmd.ExecuteReader();
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
         }
         <table class="table table-striped table-hover ">
             <tbody>
@@ -57,11 +60,25 @@
                               flag = true;
                           }
                         }
-                        <td><center><h5><b>@dr.GetValue(0).ToString().Trim() </b></h5></center></td>                       
+                        @{var currentUser = manager.FindById(dr.GetValue(0).ToString().Trim());}
+
+                        <td><center><h5><b>@currentUser.UserName </b></h5></center></td>                       
                     </tr>
                 }
             </tbody>
         </table>
+@if (flag)
+{
+        <center><h4>Add user</h4></center>
+        using (Html.BeginForm("AddUser", "Repository", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            <center>@Html.TextBoxFor(m => m.NewUser, htmlAttributes: new { @class = "form-control", placeholder = "Enter username" })</center>
+            @Html.TextBoxFor(m => m.Repo, htmlAttributes: new { style="display:none",@Value=@id})
+
+    <center><input type="submit" name="Submit" id="Submit" value="Add User" class="btn btn-default" /></center>
+        }
+        }
+
     </div>
     <div class="col-md-8">
         <center><h1>Files</h1></center>
@@ -78,8 +95,9 @@
                     <td><center>Last Update by</center></td>
                     <td><center>Last Update Time</center></td>
                     <td><center>Type</center></td>
-                    <td><center>Delete</center></td>
                     <td><center>Edit</center></td>
+                    <td><center>Delete</center></td>
+                   
 
                 </tr>
             </thead>
@@ -88,6 +106,7 @@
                 @while (dr.Read())
                 {
                     <tr class="info">
+                        <td>@Html.TextBoxFor(m => m.Path, htmlAttributes: new { style = "display:none", @Value = @id })</td>
                         <td><center><h5><b>@dr.GetValue(1).ToString().Trim() </b></h5></center></td>
                         <td><center><h5><b>@dr.GetValue(6).ToString().Trim() </b></h5></center></td>
                         <td><center><h5><b>@dr.GetValue(4).ToString().Trim() </b></h5></center></td>
@@ -113,7 +132,7 @@
                     @Html.TextBoxFor(m => m.Repo, htmlAttributes: new { style="display:none",@Value=@id})
                     
                     <input type="file" name="file" class="btn btn-default"/>
-                    <input type="submit" name="Submit" id="Submit" value="Upload" />
+                    <input type="submit" name="Submit" id="Submit" value="Upload" class="btn btn-default" />
                 }
             </center>
             
