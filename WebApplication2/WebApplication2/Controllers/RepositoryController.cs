@@ -257,7 +257,7 @@ namespace WebApplication2.Controllers
                  cmd = new SqlCommand(query, conn);
                  SqlParameter param = new SqlParameter();
                  param.ParameterName = "@Name";
-                 param.Value = fileName;
+                 param.Value = fileName.Trim();
                  param.SqlDbType = SqlDbType.NVarChar;
                  cmd.Parameters.Add(param);
 
@@ -308,8 +308,62 @@ namespace WebApplication2.Controllers
                     file.SaveAs(path);
                  }
              }
-             return RedirectToAction("Edit",routeValues: new { id = model.Repo.ToString(), model=model.Repo.ToString() });
+             return RedirectToAction("Edit",routeValues: new { id = model.Repo.ToString(), model=model });
 
          }
+        public ActionResult DeleteFile(string fileName, int repoId,string repoOwner, CreateViewModel model)
+        {
+            try
+            {
+                fileName = fileName.Trim();
+                string connStr = @"Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\aspnet-WebApplication2-20160108044733.mdf;Initial Catalog=aspnet-WebApplication2-20160108044733;Integrated Security=True";
+                SqlConnection conn = new SqlConnection(connStr);
+                try
+                {
+                    //пробуем подключится
+                    conn.Open();
+                }
+                catch (SqlException se)
+                {
+                    ModelState.AddModelError("", "can't open connection" + se);
+                    return RedirectToAction("Profile", "Account", model);
+                }
+                string query = "DELETE FROM Files" +
+                    " where Name = @Id AND Repo=@repoId";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlParameter param = new SqlParameter();
+                param.ParameterName = "@Id";
+                param.Value = fileName;
+                param.SqlDbType = SqlDbType.NVarChar;
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter();
+                param.ParameterName = "@repoId";
+                param.Value = repoId;
+                param.SqlDbType = SqlDbType.Int;
+                cmd.Parameters.Add(param);
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", "Can't update. " + ex);
+                    return RedirectToAction("Profile", "Account", model);
+
+                }
+                conn.Close();
+                conn.Dispose();
+                FileInfo File = new FileInfo(Server.MapPath("~/Repos/" + repoOwner + "/" +repoId+"/"+ fileName));
+                File.Delete();
+                ViewData["Message"] = "Success";
+                return RedirectToAction("Edit", routeValues: new { id = repoId, model = model });
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Can't. " + ex);
+                return RedirectToAction("Edit", routeValues: new { id = repoId, model = model });
+            }
+        }
     }
 }
