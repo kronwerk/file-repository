@@ -3,7 +3,7 @@
 @using Microsoft.AspNet.Identity;
 @using Microsoft.AspNet.Identity.EntityFramework;
 @model WebApplication2.Models.RepoEditModel
-
+@Page validateRequest="false"
 @{
     ViewBag.Title = "";
 }
@@ -105,7 +105,27 @@
             </tbody>
         </table>
         @if (flag) { 
-        <center><button class="btn btn-default">@Html.ActionLink("Upload File", "Upload", "Repository", routeValues: null, htmlAttributes: new { title = "New Repository" })</button></center>
+            <center>
+                @using (Html.BeginForm("Upload", "Repository", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.TextBoxFor(m => m.User, htmlAttributes: new { style="display:none",@Value=@User.Identity.GetUserId()})
+                    @Html.TextBoxFor(m => m.Repo, htmlAttributes: new { style="display:none",@Value=@id})
+                    
+                    <input type="file" name="file" class="btn btn-default"/>
+                    <input type="submit" name="Submit" id="Submit" value="Upload" />
+                }
+            </center>
+            
         }
+        
     </div>
 </div>
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+	    jQuery('a.popup').live('click', function(){
+		    newwindow=window.open($(this).attr('href'),'','height=200,width=150');
+		    if (window.focus) {newwindow.focus()}
+		    return false;
+	    });
+    });
+</script>

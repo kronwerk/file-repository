@@ -33,7 +33,7 @@ namespace WebApplication2.Models
 
 
         [Display(Name = "User")]
-        public int User { get; set; }
+        public string User { get; set; }
 
         [Display(Name = "Repository")]
         public int Repo { get; set; }

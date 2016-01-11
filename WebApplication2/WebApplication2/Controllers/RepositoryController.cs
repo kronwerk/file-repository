@@ -102,12 +102,12 @@ namespace WebApplication2.Controllers
                 conn.Dispose();
                 if (Directory.Exists("~/Repos/" + User.Identity.GetUserId()))
                 {
-                    DirectoryInfo Dir = new DirectoryInfo(Request.MapPath("~/Repos/" + User.Identity.GetUserId()));
+                    DirectoryInfo Dir = new DirectoryInfo(Server.MapPath("~/Repos/" + User.Identity.GetUserId()));
                     Dir.CreateSubdirectory(dirName);
                 }
                 else
                 {
-                    DirectoryInfo Dir = new DirectoryInfo(Request.MapPath("~/Repos/" + User.Identity.GetUserId()));
+                    DirectoryInfo Dir = new DirectoryInfo(Server.MapPath("~/Repos/" + User.Identity.GetUserId()));
                     Dir.Create();
                     Dir.CreateSubdirectory(dirName);
                 }
@@ -184,7 +184,7 @@ namespace WebApplication2.Controllers
                 }
                 conn.Close();
                 conn.Dispose();
-                DirectoryInfo Dir = new DirectoryInfo(Request.MapPath("~/Repos/" + User.Identity.GetUserId() +"/"+id));
+                DirectoryInfo Dir = new DirectoryInfo(Server.MapPath("~/Repos/" + User.Identity.GetUserId() +"/"+id));
                 Dir.Delete();
                 ViewData["Message"] = "Success";
                 return RedirectToAction("Profile", "Account");
@@ -198,36 +198,40 @@ namespace WebApplication2.Controllers
 
 
         [HttpPost]
-        public ActionResult Upload(string userId, int repoId,RepoEditModel model )
+        [ValidateInput(false)]
+        public ActionResult Upload(HttpPostedFileBase file,RepoEditModel model )
         {
              if (Request.Files.Count > 0)
              {
+                 string repoId = model.Repo.ToString();
+                 string userId = model.User.ToString();
                  string connStr = @"Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\aspnet-WebApplication2-20160108044733.mdf;Initial Catalog=aspnet-WebApplication2-20160108044733;Integrated Security=True";
                  SqlConnection conn = new SqlConnection(connStr);
                  try
                  {
-                     //пробуем подключится
                      conn.Open();
                  }
                  catch (SqlException se)
                  {
                      ModelState.AddModelError("", "can't open connection" + se);
-                     return View(model);
+                     return RedirectToAction("Edit",model);
                  }
                  string query = "SELECT * FROM Repositories WHERE Id = '"+repoId+"';";
                  SqlCommand cmd = new SqlCommand(query, conn);
-                 SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
-                 string owner=null,repoName=null;
+                 SqlDataReader dr = cmd.ExecuteReader();
+                 string owner=null;
+                 bool flag = false;
                  if (dr.Read())
                  {
                      owner=dr.GetValue(2).ToString();
-                     repoName = dr.GetValue(1).ToString();
-                     if (dr.GetValue(0).ToString() != userId)
+                     if (owner == userId)
                      {
+                         flag = true;
+                     }else{
                          query = "SELECT * FROM Connection WHERE Repos = '"+repoId+"';";
                          cmd = new SqlCommand(query, conn);
+                         dr.Close();
                          dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
-                         bool flag=false;
                          while(dr.Read()){
                              if(dr.GetValue(0).ToString() == userId)
                              {
@@ -238,17 +242,18 @@ namespace WebApplication2.Controllers
                          if(!flag)
                          {
                              ModelState.AddModelError("", "You don't have pervission!");
-                             return View(model);
+                             return RedirectToAction("Edit?repoId="+model.Repo.ToString(), model);
+
                          }
                      }
                  }
-                  var file = Request.Files[0];
+                  var newFile = Request.Files[0];
 
-                 if (file != null && file.ContentLength > 0)
+                 if (newFile != null && newFile.ContentLength > 0)
                  {
-                    var fileName = Path.GetFileName(file.FileName);
-                 query = "INSERT INTO Files (Name,Path,Repo,LastChange,Type) VALUES "
-                     + "(@Name, @Path,@Repo,@time,@Type)";
+                    var fileName = Path.GetFileName(newFile.FileName);
+                    query = "INSERT INTO Files (Name,Path,Repo,LastChange,LastChangeBy,Type) VALUES "
+                     + "(@Name, @Path,@Repo,@time,@currentUser,@Type)";
                  cmd = new SqlCommand(query, conn);
                  SqlParameter param = new SqlParameter();
                  param.ParameterName = "@Name";
@@ -258,14 +263,14 @@ namespace WebApplication2.Controllers
 
                  param = new SqlParameter();
                  param.ParameterName = "@Path";
-                 param.Value = "~/Repos/" + owner + "/" + repoName + "/" + fileName;
+                 param.Value = "~/Repos/" + owner + "/" + repoId + "/" + fileName;
                  param.SqlDbType = SqlDbType.NVarChar;
                  cmd.Parameters.Add(param);
 
                  param = new SqlParameter();
                  param.ParameterName = "@Repo";
                  param.Value = repoId;
-                 param.SqlDbType = SqlDbType.NVarChar;
+                 param.SqlDbType = SqlDbType.Int;
                  cmd.Parameters.Add(param);
 
                  param = new SqlParameter();
@@ -275,9 +280,16 @@ namespace WebApplication2.Controllers
                  cmd.Parameters.Add(param);
 
                  param = new SqlParameter();
+                 param.ParameterName = "@currentUser";
+                 param.Value = userId;
+                 param.SqlDbType = SqlDbType.NVarChar;
+                 cmd.Parameters.Add(param);
+
+                 param = new SqlParameter();
                  param.ParameterName = "@type";
                  param.Value = file.ContentType;
-                 param.SqlDbType = SqlDbType.DateTime;
+                 param.SqlDbType = SqlDbType.NVarChar;
+                 dr.Close();
                  cmd.Parameters.Add(param);
                  try
                  {
@@ -292,12 +304,12 @@ namespace WebApplication2.Controllers
                  conn.Dispose();
                  ViewData["Message"] = "Success";
 
-                 var path = Path.Combine(Server.MapPath("~/Repos/"+owner+"/"+repoName+"/"), fileName);
+                 var path = Path.Combine(Server.MapPath("~/Repos/"+owner+"/"+repoId+"/"), fileName);
                     file.SaveAs(path);
                  }
              }
+             return RedirectToAction("Edit",routeValues: new { id = model.Repo.ToString(), model=model.Repo.ToString() });
 
-             return RedirectToAction("UploadDocument");
          }
     }
 }
