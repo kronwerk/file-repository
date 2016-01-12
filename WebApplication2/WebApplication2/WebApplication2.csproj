@@ -237,6 +237,9 @@
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Repository\Create.cshtml" />
     <Content Include="Views\Repository\Edit.cshtml" />
+    <Content Include="Views\Home\SearchUser.cshtml" />
+    <Content Include="Views\Home\SearchFile.cshtml" />
+    <Content Include="Views\Account\otherProfile.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

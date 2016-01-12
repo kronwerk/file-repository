@@ -22,8 +22,14 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("My repository", "About", "Home")</li>
-                    <li>@Html.ActionLink("Search", "Search", "Home")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Search<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Find Repo", "Search", "Home")</li>
+                            <li>@Html.ActionLink("Find User", "SearchUser", "Home")</li>
+                            <li>@Html.ActionLink("Find File", "SearchFile", "Home")</li>
+                        </ul>
+                    </li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")

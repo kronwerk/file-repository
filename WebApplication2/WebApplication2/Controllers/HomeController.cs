@@ -15,11 +15,22 @@ namespace WebApplication2.Controllers
 
         public ActionResult Search()
         {
-            ViewBag.Message = "Search Page";
+            ViewBag.Message = "Repo Search Page";
 
             return View();
         }
+        public ActionResult SearchUser()
+        {
+            ViewBag.Message = "User Search Page";
 
+            return View();
+        }
+        public ActionResult SearchFile()
+        {
+            ViewBag.Message = "User Search Page";
+
+            return View();
+        }
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

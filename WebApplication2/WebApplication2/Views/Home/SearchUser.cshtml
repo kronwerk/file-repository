@@ -1,9 +1,10 @@
-﻿@using WebApplication2.Models;
+﻿@using WebApplication2.Models
 
-@using System.Data
-@using System.Data.SqlClient
+@using System.Data;
+@using System.Data.SqlClient;
 @using Microsoft.AspNet.Identity;
 @using Microsoft.AspNet.Identity.EntityFramework;
+
 @{
     ViewBag.Title = "Search";
 }
@@ -18,12 +19,11 @@
 string connStr = @"Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\aspnet-WebApplication2-20160108044733.mdf;Initial Catalog=aspnet-WebApplication2-20160108044733;Integrated Security=True";
                     SqlConnection conn = new SqlConnection(connStr);
                     conn.Open();
-                    string query = "SELECT * FROM Repositories;";
+                    string query = "SELECT * FROM AspNetUsers;";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
                    
 
-        var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
 
 }
 
@@ -31,9 +31,9 @@ string connStr = @"Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\
     <ul>
         @while (dr.Read())
                 {
-        var currentUser = manager.FindById(dr.GetValue(2).ToString());
-        string s=dr.GetValue(1).ToString()+" (by "+currentUser.UserName+")";
-        <li>@Html.ActionLink(s, "Edit", "Repository", routeValues: new { id = dr.GetValue(0) }, htmlAttributes: new { title = "Delete Repository", @class = "list-group-item" })</li>
+        
+        string s=dr.GetValue(1).ToString();
+        <li>@Html.ActionLink(s, "otherProfile", "Account", routeValues: new { id = dr.GetValue(1).ToString().Trim() }, htmlAttributes: new { title = "Delete Repository", @class = "list-group-item" })</li>
                 }
     </ul>
 </nav>

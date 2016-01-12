@@ -229,6 +229,11 @@ namespace WebApplication2.Controllers
         {
             return View();
         }
+        public ActionResult otherProfile(string id,EditViewModel model)
+        {
+            ViewBag.userId = id;
+            return View(model);
+        }
 
   
         //
