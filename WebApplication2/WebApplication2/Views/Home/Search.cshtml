@@ -11,6 +11,8 @@
 <form id="live-search" action=""  method="post">
     <fieldset>
         <input type="text" class="form-control" id="filter" value="" placeholder="Search" />
+        <input type="text" class="form-control" id="filter_user" value="" placeholder="UserName" />
+        <input type="checkbox" id="filter_checkbox" />Do not clean results<br />
         <span id="filter-count"></span>
 </fieldset>
 </form>
@@ -54,14 +56,45 @@ $(document).ready(function(){
 
             // Show the list item if the phrase matches and increase the count by 1
             } else {
-                $(this).show();
-                count++;
+                if (!$("#filter_checkbox").is(':checked')) {
+                    $(this).show();
+                    count++;
+                }
             }
         });
 
         // Update the count
         var numberItems = count;
-        $("#filter-count").text("Number of Comments = "+count);
+        $("#filter-count").text(count + " found");
     });
+
+    $("#filter_user").keyup(function () {
+
+        // Retrieve the input field text and reset the count to zero
+        var filter = $(this).val(), count = 0;
+
+        // Loop through the comment list
+        $("nav ul li").each(function () {
+            var str = $(this).text();
+            var start_pos = str.indexOf('(by') + 3;
+            var end_pos = str.indexOf(')', start_pos);
+            var repo = str.substring(start_pos, end_pos)
+            // If the list item does not contain the text phrase fade it out
+            if (repo.search(new RegExp(filter, "i")) < 0) {
+                $(this).fadeOut();
+
+                // Show the list item if the phrase matches and increase the count by 1
+            } else {
+                if (!$("#filter_checkbox").is(':checked')) {
+                    $(this).show();
+                    count++;
+                }
+            }
+        });
+
+        // Update the count
+        var numberItems = count;
+        $("#filter-count").text(count+" found");
+    }); 
 });
 </script>

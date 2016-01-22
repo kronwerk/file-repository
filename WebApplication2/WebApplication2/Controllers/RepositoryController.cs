@@ -366,6 +366,44 @@ namespace WebApplication2.Controllers
             }
         }
 
+        public ActionResult DownloadFile(int fileId)
+        {
+            string connStr = @"Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\aspnet-WebApplication2-20160108044733.mdf;Initial Catalog=aspnet-WebApplication2-20160108044733;Integrated Security=True";
+            SqlConnection conn = new SqlConnection(connStr);
+            try
+            {
+                conn.Open();
+            }
+            catch (SqlException se)
+            {
+                ModelState.AddModelError("", "can't open connection" + se);
+                return RedirectToAction("Edit");
+            }
+            string query = "SELECT * FROM Files WHERE Id = '" + fileId + "';";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            dr.Read();
+            if (dr == null)
+            {
+                ModelState.AddModelError("", "can't open connection");
+                return RedirectToAction("Edit");
+            }
+            string filename = dr.GetValue(1).ToString();
+            string filepath = dr.GetValue(2).ToString();
+            string startupPath = System.IO.Directory.GetCurrentDirectory();
+            byte[] filedata = System.IO.File.ReadAllBytes(Server.MapPath(filepath));
+            string contentType = MimeMapping.GetMimeMapping(filepath);
+
+            var cd = new System.Net.Mime.ContentDisposition
+            {
+                FileName = filename,
+                Inline = true,
+            };
+
+            Response.AppendHeader("Content-Disposition", cd.ToString());
+
+            return File(filedata, contentType);
+        }
         public ActionResult AddUser(RepoEditModel model)
         {
             int repoId = model.Repo;

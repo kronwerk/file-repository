@@ -105,6 +105,7 @@
                     <td><center>Last Update by</center></td>
                     <td><center>Last Update Time</center></td>
                     <td><center>Type</center></td>
+                    <td><center>Download</center></td>
                     <td><center>Edit</center></td>
                     <td><center>Delete</center></td>
                    
@@ -116,12 +117,12 @@
                 @while (dr.Read())
                 {
                     <tr class="info">
-                        <td>@Html.TextBoxFor(m => m.Path, htmlAttributes: new { style = "display:none", @Value = @id })</td>
                         <td><center><h5><b>@dr.GetValue(1).ToString().Trim() </b></h5></center></td>
                         <td><center><h5><b>@dr.GetValue(6).ToString().Trim() </b></h5></center></td>
                         <td><center><h5><b>@dr.GetValue(4).ToString().Trim() </b></h5></center></td>
                         <td><center><h5><b>@dr.GetValue(5).ToString().Trim() </b></h5></center></td>
                         @if(flag){
+                            <td style="table-layout: auto;width:10%; "> @Html.ActionLink("Download", "DownloadFile", "Repository", routeValues: new { fileId = dr.GetValue(0).ToString()}, htmlAttributes: new { title = "Download File", @class = "btn btn-info" })</td>
                             <td style="table-layout: auto;width:10%; "> <a href="#" class=" btn btn-info">Edit</a></td>
                             <td style="table-layout: auto;width:10%; "> @Html.ActionLink("Delete", "DeleteFile", "Repository", routeValues: new { fileName = dr.GetValue(1).ToString(),repoId=id, repoOwner = owner }, htmlAttributes: new { title = "Delete File", @class = "btn btn-danger" })</td>
                         }
